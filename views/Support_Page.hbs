@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Mall | Support Policy</title>
+<link rel="stylesheet" href="Web14.css">
+</head>
+<body onload="Load()">
+    <div id="Container">
+        <div id="Loader">
+
+        </div>
+    </div>
+ <section id="Body">
+    {{>Header}}
+    <section class="Support_Page" id="Support_Page">
+        <div class="Support">
+<div class="Support_Head">
+<b>  Support Policy
+</b>
+</div>
+<div class="Support_Para">
+    Once you have ordered from our website, you will receive a confirmation email. Incase of COD, the order will be processed after you receive a confirmation call from our customer care team. You will receive another email when the product is out for shipping. All you have to do then is, sit back, relax, and wait for your awesome product(s) to arrive. <br>
+<br>
+    We have tie ups with reputed courier companies, so your orders will be delivered right to your doorstep. All orders will be delivered in fully sealed packages to protect your goods and ensure that they reach you in perfect condition. <br>
+   <br>
+   
+    Orders will be delivered within 7 – 8 working days from the day of confirmation. Delivery time may vary depending upon the shipping address. To track your order, use the tracking id which is sent to you via SMS. Go to  https://vnfmall.com/   website. Click My Account tab. Now click Track your order section. You will be redirected to delivery link where you can use the tracking id and track your order. Tracking details will also be available in the dispatch email. <br> <br>
+</div>
+        </div>
+    </section>
+ {{>Footer}}
+ </section>
+  <script>
+      const Container = document.getElementById('Container');
+      const Body = document.getElementById('Body');
+      Body.style.display='none';
+  const Load = () =>{
+    Container.style.display='none';
+    Body.style.display='flex';
+  }
+    </script>
+</body>
+</html>

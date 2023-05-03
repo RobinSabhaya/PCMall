@@ -1,0 +1,26 @@
+{
+  "name": "web-14",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Web14.js",
+  "scripts": {
+    "dev": "nodemon Web14b.js -e js,json,hbs,html,css,pug",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robin Sabhaya",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.6.7",
+    "nodemon": "^2.0.22",
+    "pug": "^3.0.2",
+    "validator": "^13.7.0"
+  }
+}

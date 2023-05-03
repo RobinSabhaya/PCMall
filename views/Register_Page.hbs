@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Mall | Register Page</title>
+    <script
+    src="https://kit.fontawesome.com/6b80b94304.js"
+    crossorigin="anonymous"
+  ></script>
+ <link rel="stylesheet" href="/Web14.css">
+</head>
+<body onload="Load()">
+      <div id="Container">
+        <div id="Loader">
+
+        </div>
+    </div>
+   <section id="Body">
+      {{>Header}}
+    <section class="Register" id="Register">
+        <div class="Container">
+            <div class="Register_Head">
+                <h1>Register to your account.</h1>
+            </div>
+           <form action="" method="post">
+             <div class="Register_Name">
+                <input type="text" name="Name" id="Name" required placeholder=" Full Name">
+            </div>
+            <div class="Register_Email">
+                <input type="email" name="email" id="email" required placeholder="Email">
+            </div>
+           
+            <div class="Register_Password">
+                <input type="password" name="Pass" id="Password" required placeholder="Password">
+            </div>
+            <div class="Register_Password">
+                <input type="password" name="password" id="password" required placeholder="Password">
+            </div>
+            <div class="Register_Container">
+                <div class="Cont_Head1">
+                    <input type="checkbox" name="Checkbox" id="Checkbox"> &nbsp; By signing up you agree to our terms and conditions.
+                </div>
+            </div>
+            <div class="Register_Btn" type="submit">
+                <button id="btn">Create Account</button>
+            </div>
+ </form>
+            <div class="Register_Head2">
+                <h2>Or Join With</h2>
+            </div>
+            <div class="Register_Items">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-google"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            <div class="Register_Head2">
+                <h2>Already have an account?</h2>
+            </div>
+            <div class="Register_Login">
+                <a href="/Login">Login</a>
+            </div>
+        </div>
+    </section>
+      {{>Footer}}
+   </section>
+   <script>
+      const Container = document.getElementById('Container');
+      const Body = document.getElementById('Body');
+      Body.style.display='none';
+  const Load = () =>{
+    Container.style.display='none';
+    Body.style.display='flex';
+  }
+    </script>
+</body>
+</html>
+

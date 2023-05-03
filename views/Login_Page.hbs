@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Mall | Login Page</title>
+    <script
+    src="https://kit.fontawesome.com/6b80b94304.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="/Web14.css">
+</head>
+<body onload="Load()">
+      <div id="Container">
+        <div id="Loader">
+
+        </div>
+    </div>
+   <section id="Body">
+     {{>Header}}
+    <section class="Login" id="Login">
+        <div class="Container">
+            <div class="Login_Head">
+                <h1>Login to your account.</h1>
+            </div>
+           <form action="" method="post">
+             <div class="Login_Email">
+                <input type="email" name="Lemail" id="email" required placeholder="Email">
+            </div>
+            <div class="Login_Password">
+                <input type="password" name="Lpassword" id="Password" required placeholder="Password">
+            </div>
+       
+            <div class="Login_Container">
+                <div class="Cont_Head1">
+                    <input type="checkbox" name="Checkbox" id="Checkbox"> &nbsp; Remember me
+                </div>
+                <div class="Cont_Head2">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+            <div class="Login_Btn" type="Submit">
+                <button id="btn">Login</button>
+            </div>
+            </form>
+            <div class="Login_Head2">
+                <h2>Or Login With</h2>
+            </div>
+            <div class="Login_Items">
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-google"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            <div class="Login_Head2">
+                <h2>Don't have an account?</h2>
+            </div>
+            <div class="Login_Register">
+                <a href="/register">Register Now</a>
+            </div>
+        </div>
+    </section>
+      {{>Footer}}
+   </section>
+   <script>
+      const Container = document.getElementById('Container');
+      const Body = document.getElementById('Body');
+      Body.style.display='none';
+  const Load = () =>{
+    Container.style.display='none';
+    Body.style.display='flex';
+  }
+    </script>
+</body>
+</html>

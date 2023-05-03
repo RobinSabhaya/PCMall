@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Mall | Profile</title>
+    <link rel="stylesheet" href="/Web14.css">
+</head>
+<body>
+    {{>Header}}
+    <div class="Profile_Container">
+        <div class="Profile_Head">
+            <h1>
+                Profile 
+            </h1>
+        </div>
+        <div class="Profile_Section">
+            <form action="" method="post">
+               <div class="Prof_Name">
+                 <label for="Name">Name</label><br>
+                <input type="text" name="Name" id="Name">
+               </div>
+               <div class="Prof_EdName">
+                 <label for="Name">New Name</label><br>
+                <input type="text" name="Edname" id="Name" placeholder="New name">
+               </div>
+                <div class="Prof_Pass">
+                     <label for="Name">Password</label><br>
+                    <input type="text" name="password" id="Pass">
+                </div>
+                <div class="Prof_EdPass">
+                     <label for="Name">New Password</label><br>
+                    <input type="password" name="Edpassword" id="Pass" >
+                </div>
+
+            </form>
+        </div>
+    </div>
+     {{>Footer}}
+</body>
+</html>

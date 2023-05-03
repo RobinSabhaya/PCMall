@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link rel="stylesheet" href="/Web14.css">
+</head>
+<body>
+     <header>
+      <div class="Header_Container">
+        <div class="Head_Cont_Left">
+          <div class="Head_Item1">
+            <select class="Select">
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+          <div class="Head_Item2">
+            <select class="Select">
+              <option value="Ruppe">
+                Rupee <i class="fa-solid fa-indian-rupee-sign"></i>
+              </option>
+              <option value="Dollar">Dollar</option>
+            </select>
+          </div>
+        </div>
+        <div class="Head_Cont_Right">
+          <div  class="Head_Item3"><a href="/home">Home</a></div>
+          <div  class="Head_Item3"><a href="/login">Login</a></div>
+          <div  class="Head_Item3"><a href="/logout">Logout</a></div>
+          <div  class="Head_Item3"><a href="/register">Registration</a></div>
+          <div  class="Head_Item3"><i class="fa-solid fa-circle-user"></i>&nbsp;<a href="/profile">{{username}}</a></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+      <div class="Navbar_Container">
+        <div class="Navbar_Left">
+          <div class="Logo">
+            {{!-- <img src="/logo1.png" alt="" height="60px" /> --}}
+            PC Mall
+          </div>
+        </div>
+        <div class="Navbar_Middle">
+          <div class="Search">
+            <input
+              type="search"
+              name="Search"
+              id="Search"
+              placeholder="I am shopping for..."
+            />
+          </div>
+        </div>
+        <div class="Navbar_Right">
+          <ul>
+            <li><i class="fa-solid fa-code-compare"></i> Compare</li>
+            <li><i class="fa-solid fa-heart"></i> Wishlist</li>
+            <li><i class="fa-solid fa-cart-shopping"></i> Cart</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</body>
+</html>
