@@ -1,0 +1,31 @@
+<h1 class="m-8 text-black font-bold text-2xl">
+  Order Summary
+</h1>
+<div class="h-fit w-full flex items-center flex-col my-10">
+  <table class="table-auto border-collapse border border-slate-300 w-10/12">
+    <thead>
+      <tr align="left">
+        <th class="border border-slate-300 p-2">Orders</th>
+        <th class="border border-slate-300 p-2">Phone</th>
+        <th class="border border-slate-300 p-2">Address</th>
+        <th class="border border-slate-300 p-2">paymentStatus</th>
+        <th class="border border-slate-300 p-2">Status</th>
+        <th class="border border-slate-300 p-2">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% orderData.forEach(order=>{
+            %> 
+            <tr align="left">
+                <td class="border border-slate-300 p-3"><a href="/customer/order/<%= order._id %>" class="text-red-500"><%= order._id %></a></td>
+                <td class="border border-slate-300 p-3"><%= order.phone%></td>
+                <td class="border border-slate-300 p-3"><%= order.address%></td>
+                <td class="border border-slate-300 p-3"><%= order.paymentStatus%></td>
+                <td class="border border-slate-300 p-3"><%= order.status%></td>
+                <td class="border border-slate-300 p-3"><%= moment(order.createdAt).format("hh : mm : A") %></td>
+              </tr>
+            <%
+        })%>
+    </tbody>
+  </table>
+</div>

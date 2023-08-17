@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Mall | Login Page</title>
-    <script
-    src="https://kit.fontawesome.com/6b80b94304.js"
-    crossorigin="anonymous"
-  ></script>
-  <link rel="stylesheet" href="/Web14.css">
-</head>
-<body onload="Load()">
       <div id="Container">
         <div id="Loader">
 
         </div>
     </div>
    <section id="Body">
-     {{>Header}}
     <section class="Login" id="Login">
         <div class="Container">
             <div class="Login_Head">
@@ -60,16 +45,6 @@
             </div>
         </div>
     </section>
-      {{>Footer}}
    </section>
-   <script>
-      const Container = document.getElementById('Container');
-      const Body = document.getElementById('Body');
-      Body.style.display='none';
-  const Load = () =>{
-    Container.style.display='none';
-    Body.style.display='flex';
-  }
-    </script>
 </body>
 </html>

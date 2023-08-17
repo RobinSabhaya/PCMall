@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Mall | Support Policy</title>
-<link rel="stylesheet" href="Web14.css">
-</head>
-<body onload="Load()">
+
     <div id="Container">
         <div id="Loader">
 
         </div>
     </div>
  <section id="Body">
-    {{>Header}}
     <section class="Support_Page" id="Support_Page">
         <div class="Support">
 <div class="Support_Head">
@@ -31,16 +21,6 @@
 </div>
         </div>
     </section>
- {{>Footer}}
  </section>
-  <script>
-      const Container = document.getElementById('Container');
-      const Body = document.getElementById('Body');
-      Body.style.display='none';
-  const Load = () =>{
-    Container.style.display='none';
-    Body.style.display='flex';
-  }
-    </script>
 </body>
 </html>

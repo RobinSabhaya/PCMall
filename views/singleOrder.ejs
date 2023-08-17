@@ -1,0 +1,21 @@
+<div>
+    <div class="w-full flex justify-around items-center flex-row flex-wrap">
+    <h1 class="m-4 text-3xl text-black font-bold ">Track Delivery Status</h1>
+    <div class="text-sm text-green-500 rounded-full p-2 bg-gray-100 ">
+        <%= orderData._id %>
+        <input type="hidden" name="" id="hiddenInp" value="<%= JSON.stringify(orderData) %>">
+    </div>
+    </div>
+        <div class="flex justify-start items-center flex-col">
+        
+            <div class="statuses">
+                <ul class="gap-10 text-2xl">
+                    <li class=" m-5 status" data-status="order_placed"><span class="dot mx-5" id="status">order placed</span></li>
+                    <li class=" m-5 status" data-status="confirmed"><span class="dot mx-5 " id="status">order confirmed</span></li>
+                    <li class=" m-5 status" data-status="prepared"><span class="dot mx-5" id="status">preparation</span></li>
+                    <li class=" m-5 status" data-status="delivered"><span class="dot  mx-5" id="status">out of delivery</span></li>
+                    <li class=" m-5 status" data-status="placed"><span class="dot  mx-5" id="status">placed</span></li>
+                </ul>
+            </div>
+        </div>
+</div>

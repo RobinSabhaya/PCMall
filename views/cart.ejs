@@ -1,0 +1,71 @@
+<div class="flex flex-col gap-y-7 items-center mt-7 w-full">
+  <% if(cartData) {%> <% cartData.forEach((ele)=>{%>
+  <div
+    class="cartBox flex justify-between items-center flex-row flex-wrap w-fit h-fit p-6 rounded-lg"
+  >
+    <div>
+      <img src="<%= ele.item.img %>" alt="" height="100px" width="100px" />
+    </div>
+    <div class="flex flex-wrap w-1/2"><%= ele.item.name %></div>
+    <div>
+      <!-- <form action="/cc" method="post"> -->
+        <button class="text-2xl p-4" name="add"  id="btnAdd">+</button>
+        <div class="text-black text-xl "><%= ele.qty %> pcs.</div>
+        <button class="text-2xl p-4" name="remove" id="btnRemove">-</button>
+      <!-- </form> -->
+    </div>
+    <div class="m-3 text-red-500 text-xl">₹ <%= ele.item.price%></div>
+
+  </div>
+  <div
+    class="text-red-500 flex justify-end items-center text-2xl w-10/12 font-bold"
+  >
+    Total Price : ₹ <%= session.cart.totalPrice %>
+  </div>
+  <%})%> 
+</div>
+<div class="flex justify-center items-center flex-col flex-wrap">
+  <form
+    class="rounded px-8 pt-6 pb-8 mb-4"
+    method="post"
+    action="/cart"
+    id="paymentForm"
+>
+  <select  name="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5" id="paymentType">
+    <option value="cash" >Cash On Delivery</option>
+    <option  value="card" >Card</option>
+  </select>
+    <div class="mb-4">
+      <input
+        class="shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="phone"
+        type="number"
+        placeholder="Phone Number"
+        name="phone"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        class="shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="address"
+        type="text"
+        placeholder="address"
+        name="address"
+      />
+    </div>
+    <div  class="shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"id="card"></div>
+    <div>
+      <button class="m-4 text-white bg-red-500 rounded-lg p-4">
+        submit
+      </button>
+    </div>
+  </form>
+  <%}
+  else {%>
+    <div class="flex justify-center flex-col">
+      <img src="/cart.png" alt="Empty Cart" height="300px" width="300px">
+      <h1 class="text-3xl m-5">Cart is empty!!</h1>
+    </div>  
+  <%}%>
+
+</div>

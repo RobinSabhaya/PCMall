@@ -1,0 +1,51 @@
+<div id="Container">
+  <div id="Loader"></div>
+</div>
+<section id="Body">
+  <!-- Home -->
+  <div class="Home_Container">
+    <div class="Home_Cont_Middle"></div>
+  </div>
+  <section class="Banner" id="Banner">
+    <div class="Banner_Head">Featured Products</div>
+  </section>
+  <section class="Product" id="Product">
+    <div
+      class="grid-cols-3 w-full gap-5 flex justify-center items-center flex-wrap "
+    >
+      <% if(productData.length > 0) {%> <% productData.forEach((data)=>{%>
+      <div
+        class="flex justify-start items-center flex-col flex-wrap p-5 w-1/4 product_bx"
+      >
+        <div>
+          <img src="/<%= data.img%>" alt="img" height="100px" width="100px" />
+        </div>
+        <div><%= data.name%></div>
+        <div class="text-red-700 text-xl font-bold m-2">₹<%= data.price%></div>
+        <div>
+          <button class="bg-red-700 text-white text-sm px-5 py-3 rounded-full mt-2 btn" data-order="<%= JSON.stringify(data) %>" >Add to Cart</button>
+        </div>
+      </div>
+      <%})%> <%}%>
+    </div>
+    <div class="Product_Container">
+      <div class="Product_Head">Best Selling</div>
+      <div class="Product_Head2">TOP 20</div>
+    </div>
+  </section>
+  <section class="Categories" id="Categories">
+    <div class="Categories_Left">
+      <div class="Categories_Head">Top 10 Categories</div>
+    </div>
+    <div class="Categories_Middle">
+      <div class="Catg_Mid_Head">View All Categories</div>
+      <div class="Catg_Mid_Head2">Top 10 Brands</div>
+    </div>
+    <div class="Categories_Right">
+      <a href="/allproduct">View All Brands</a>
+    </div>
+  </section>
+  <section class="Product" id="Product">
+    <section class="Product_Container_It"></section>
+  </section>
+</section>
