@@ -7,8 +7,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('express-flash');
 const Emmiter = require('events');
+const passport = require('passport');
 const PORT = process.env.PORT || 8000;
 require('./db/conn');
+require('./config/passport');
 const loginController = require('./controllers/customer/loginController');
 const logoutController = require('./controllers/customer/logoutController');
 const registerController = require('./controllers/customer/registerController');
@@ -35,10 +37,13 @@ app.use(session({
         maxAge : 1000*60 * 60 * 24
     },
 }));
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())
 app.use(express.urlencoded({extended: true}));
 app.use((req,res,next)=>{
     res.locals.session = req.session;
+    res.locals.user = req.user;
     next();
 })
 app.use(express.json());
@@ -70,6 +75,17 @@ app.post('/customer/order',orderController().postOrder)
 app.get('/admin/order',adminController().getAdmin)
 app.post('/admin/order/status',adminController().orderStatus);
 app.get('/customer/order/:id',orderController().singleOrder);
+app.get('/auth/google',
+passport.authenticate('google',{
+    scope : ['email',"profile"]
+})
+);
+app.get('/redirect',
+passport.authenticate('google',{
+    successRedirect : "/",
+})
+);
+
 //Error handling Middleware
 app.use((req,res)=>{
     return res.render('Error_Page');

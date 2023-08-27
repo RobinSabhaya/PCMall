@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js -e ejs,js,json",
+    "start" : "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Robin Sabhaya",
@@ -25,6 +26,7 @@
     "moment": "^2.29.4",
     "mongoose": "^6.6.7",
     "nodemon": "^2.0.22",
+    "passport-google-oauth2": "^0.2.0",
     "socket.io": "^4.7.2",
     "stripe": "^12.17.0"
   },
