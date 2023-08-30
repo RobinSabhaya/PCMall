@@ -11,7 +11,9 @@ export function initAdmin() {
     })
     .then((res) => {
       orders = res.data;
-      tBody.innerHTML = generateOrder(orders);
+      if(tBody){
+        tBody.innerHTML = generateOrder(orders);
+      }
       function renderItem(orders) {
         const orderData = Object.values(orders);
         return orderData.map((ele) => {

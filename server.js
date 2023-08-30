@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo');
 const flash = require('express-flash');
 const Emmiter = require('events');
 const passport = require('passport');
+const favicon = require('serve-favicon')
 const PORT = process.env.PORT || 8000;
 require('./db/conn');
 require('./config/passport');
@@ -48,6 +49,7 @@ app.use((req,res,next)=>{
 })
 app.use(express.json());
 app.use(cookieparser());
+app.use(favicon(__dirname + "/public/image/favicon.ico"))
 app.use(expressLayout);
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.static(path.join(__dirname, "/public/css")));

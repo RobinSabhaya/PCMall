@@ -26,12 +26,11 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
     <link
       rel="stylesheet"
       href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
-    />
-  </head>
+    />  </head>
 
   <body onload="Load()">
     <header>
-      <div class="Header_Container">
+      <div class="Header_Container" id="Header_Container">
         <div class="Head_Cont_Left">
           <div class="Head_Item1">
             <select class="Select">
@@ -73,7 +72,7 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
               width="30px"
               style="border-radius: 50%"
               alt="profile"
-            /><div class="text-red-700 font-bold"><%= user.displayName %></div>
+            /><div class="text-red-500 font-bold"><%= user.displayName %></div>
           </div>
           <%} %>
         </div>
@@ -85,6 +84,11 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
       <div class="Navbar_Container">
         <div class="Navbar_Left">
           <div class="Logo">PC Mall</div>
+          <div id="bar" onclick="toggle()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
         </div>
         <div class="Navbar_Middle">
           <div class="Search">
@@ -170,7 +174,7 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
         <div class="Foot_Cont4">
           <div class="Cnt4_Head"><a href="/profile">My Account</a></div>
           <div class="Cnt4_Items">
-            <div class="Cnt4_Item"><a href="/home">Home</a></div>
+            <div class="Cnt4_Item"><a href="/">Home</a></div>
             <div class="Cnt4_Item"><a href="/login">Login</a></div>
             <div class="Cnt4_Item"><a href="/Register">Registration</a></div>
             <div class="Cnt4_Item"><a href="/logout">Logout</a></div>
@@ -195,5 +199,6 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
     <script src="
         https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js
         "></script>
+        <script src="/index.js"></script>
   </body>
 </html>

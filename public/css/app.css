@@ -38,9 +38,8 @@ header {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
   background-color: var(--bgcolor);
-  height: 7vh;
+  height: 80px;
   font-size: 20px;
 }
 .Head_Cont_Left {
@@ -80,7 +79,6 @@ nav {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
   background-color: var(--bgcolor);
   color: var(--fontcolor);
   font-size: 20px;
@@ -115,7 +113,7 @@ nav {
   padding: 5px;
   margin: 10px;
   width: 100%;
-  height: 5vh;
+  height: 40px;
 }
 .Navbar_Right {
   display: flex;
@@ -141,7 +139,6 @@ nav {
 .Home_Container {
   display: grid;
   grid-template-columns: 1fr;
-  /* place-items: center; */
   align-items: flex-start;
   width: 100%;
 }
@@ -151,27 +148,26 @@ nav {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  width: 100%;
+  max-width: 100%;
 }
-/* .Home_Cont_Left{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
-        flex-wrap: wrap;
-        height: 50vh;
-        width: 30vw;
-        background-color: red;
-        margin: 20px;
-        padding: 10px;
-    } */
-.Home_Cont_Middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+    .Product_Container1{
+     display: grid;
+     grid-template-columns: repeat(3,1fr);
+     place-items: center;
+     gap: 20px;
+    }
+    .product_bx{
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    }
 .Home_Cont_Right {
   display: flex;
   justify-content: flex-end;
@@ -179,25 +175,6 @@ nav {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  /* z-index: -1; */
-}
-.Img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 40%;
-  overflow-y: scroll;
-  height: 38vh;
-  gap: 40px;
-  padding: 20px;
-  background-color: red;
-  margin: 30px;
-}
-.Img img {
-  border-radius: 20px;
-  transform: rotate(45deg);
 }
 .Banner {
   display: flex;
@@ -232,9 +209,6 @@ nav {
   flex-wrap: wrap;
   padding: 20px;
   background-color: var(--bgcolor);
-}
-.product_bx{
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 .Product_Container {
   display: flex;
@@ -279,33 +253,6 @@ nav {
   color: black;
   text-decoration: none;
 }
-.Item1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 10px;
-  box-shadow: 0px 12px 24px -12px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  height: 400px;
-}
-.Price_Box {
-  margin: 10px;
-  font-size: 20px;
-}
-.Rating_Box {
-  margin: 10px;
-  font-size: 20px;
-}
-.Review_Box {
-  margin: 10px;
-  font-size: 15px;
-}
-.Review_Box:hover {
-  text-decoration: underline;
-  color: red;
-}
 .head {
   color: red;
 }
@@ -322,51 +269,6 @@ nav {
   padding: 0px 10px ;
   border-radius: 50%;
   text-align: center;
-}
-.Grid_View {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  top: 12px;
-  left: 1396px;
-  right: 0;
-  bottom: 0;
-  background-color: white;
-  color: black;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  gap: 10px;
-  margin: 10px;
-  width: 100px;
-  padding: 10px;
-  border-radius: 7px;
-}
-.Product_Container_It.List {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  place-items: center;
-  gap: 20px;
-  margin: 20px 0px;
-  width: 100%;
-}
-.Item11 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.Row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 300px;
-  width: 95vw;
 }
 .Categories {
   display: flex;
@@ -427,18 +329,6 @@ nav {
   text-decoration: none;
   color: black;
 }
-.Categories_Footer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  height: fit-content;
-  width: fit-content;
-  padding: 10px;
-  margin: 20px;
-}
 .Banner_Container {
   display: flex;
   justify-content: space-between;
@@ -455,8 +345,6 @@ nav {
   color: black;
   margin: 10px;
   border: 2px solid black;
-  /* border-bottom: none;
-    border-top: none; */
   padding: 20px;
   border-radius: 5px;
 }
@@ -509,7 +397,8 @@ nav {
   outline: none;
   border: 2px solid black;
   border-radius: 10px;
-  width: 15vw;
+  width: 300px;
+  margin-bottom: 10px;
 }
 #Btn,
 #Btn2 {
@@ -557,139 +446,11 @@ nav {
   flex-wrap: wrap;
   gap: 20px;
 }
-@media screen and (max-width: 924px) {
-  nav {
-    top: 0;
-    position: sticky;
-  }
-  .Foot_Cont1,
-  .Foot_Cont2 {
-    width: 100%;
-  }
-  .Foot_Cont3,
-  .Foot_Cont4 {
-    width: 100%;
-  }
-
-  .Banner_Container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 10px;
-    gap: 20px;
-    background-color: white;
-    font-size: 20px;
-    box-shadow: 0px 12px 24px -12px rgba(0, 0, 0, 0.5);
-  }
-}
-@media screen and (max-width: 763px) {
-  nav {
-    top: 0;
-    position: sticky;
-  }
-  .Categories {
-    flex-direction: column;
-    width: 100%;
-  }
-  .Categories_Middle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-}
-@media screen and (max-width: 680px) {
-  nav {
-    top: 0;
-    position: sticky;
-  }
-  .Header_Container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    background-color: var(--bgcolor);
-    height: 33vh;
-    font-size: 20px;
-    gap: 20px;
-    transition: all 3ms;
-  }
-  .Head_Cont_Right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 7px;
-  }
-  .Head_Cont_Left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 7px;
-  }
-  .Navbar_Container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    background-color: var(--bgcolor);
-    color: var(--fontcolor);
-    font-size: 20px;
-    padding: 10px;
-    gap: 20px;
-    box-shadow: 0px 12px 24px -12px rgba(0, 0, 0, 0.5);
-  }
-  .Navbar_Right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
-@media screen and (max-width: 1418px) {
-  .Product_Container_It {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .Home_Cont_Middle {
-    width: 100vw;
-  }
-}
-@media screen and (max-width: 740px) {
-  .Product_Container_It {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .Home_Cont_Middle {
-    height: 730px;
-    width: 730px;
-  }
-}
-@media screen and (max-width: 420px) {
-  .Home_Cont_Middle {
-    height: 400px;
-    width: 400px;
-  }
-}
 /* Error Page */
 .Error_Page {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
   height: 82vh;
   width: 100%;
   background-color: whitesmoke;
@@ -729,14 +490,14 @@ nav {
   margin: 10px;
 }
 
-/* Login Page */
-.Login {
+/* Login and register Page */
+.Login , .Register {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: whitesmoke;
   color: black;
@@ -747,31 +508,24 @@ nav {
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 31%;
+  width: 500px;
   background: white;
   padding: 10px;
   height: fit-content;
   margin: 20px;
 }
-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.Login_Head {
+.Login_Head , .Register_Head {
   text-align: center;
   margin: 20px;
   color: black;
   font-size: 20px;
 }
 .Login_Email,
-.Login_Password {
+.Login_Password , .Register_Name,.Register_Email, .Register_Password{
   margin: 10px;
 }
 #email,
-#Password {
+#Password,#name {
   height: 5vh;
   width: fit-content;
   padding: 5px;
@@ -781,13 +535,20 @@ form {
   border: 2px solid black;
   border-radius: 4px;
 }
-.Login_Container {
+.Login_Container ,.Register_Container {
   display: flex;
   flex-direction: row;
   gap: 20px;
   justify-content: space-between;
   align-items: center;
-  width: 83%;
+  width: 100%;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .Cont_Head1 {
   font-size: 15px;
@@ -804,7 +565,7 @@ form {
   color: black;
   text-decoration: none;
 }
-.Login_Btn {
+.Login_Btn , .Register_Btn {
   margin: 10px;
 }
 #btn {
@@ -814,17 +575,17 @@ form {
   padding: 10px;
   margin: 10px;
   text-align: center;
-  width: 24vw;
-  height: 6vh;
+  width: fit-content;
+  height: fit-content;
 }
 .Login_Head2,
-.Login_Head2 {
+.Login_Head2 , .Register_Head2{
   text-align: center;
   margin: 20px;
   color: black;
   font-size: 12px;
 }
-.Login_Items {
+.Login_Items , .Register_Items {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -833,38 +594,24 @@ form {
   gap: 20px;
   margin: 20px;
 }
-.Login_Items a {
+.Login_Items a , .Register_Items a{
   font-size: 30px;
   color: black;
   text-decoration: none;
 }
-.Login_Register {
+.Login_Register ,.Register_Login{
   margin: 0px 0px 5px 0px;
   color: red;
   font-size: 20px;
 }
-.Login_Register a {
+.Login_Register a , .Register_Login a{
   font-size: 17px;
   color: black;
   text-decoration: none;
   color: red;
 }
-@media screen and (max-width: 840px) {
-  .Container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: fit-content;
-    background: white;
-    height: fit-content;
-    margin: 20px;
-  }
-}
-
-/* Privacy Page */
-.Privacy_Page {
+/* Page */
+.Privacy_Page , .Support_Page,.Return_Page,.Term_Page{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -873,13 +620,12 @@ form {
   background-color: whitesmoke;
   width: 100vw;
 }
-.Privacy {
+.Privacy , .Return , .Support , .Term {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 253vh;
   width: 80vw;
   padding: 20px;
   background-color: white;
@@ -887,54 +633,12 @@ form {
   margin: 20px;
   margin-top: 50px;
 }
-.Privacy_Head {
+.Privacy_Head , .Return_Head , .Support_Head , .Term_Head {
   font-size: 30px;
   margin: 10px;
 }
-.Privacy_Para {
+.Privacy_Para, .Return_Para , .Support_Para , .Term_Para {
   font-size: 16px;
-}
-
-/* Register */
-.Register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 110vh;
-  width: 100%;
-  background-color: whitesmoke;
-  color: black;
-}
-.Container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 31%;
-  background: white;
-  padding: 10px;
-  height: fit-content;
-  margin: 20px;
-}
-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.Register_Head {
-  text-align: center;
-  margin: 20px;
-  color: black;
-  font-size: 20px;
-}
-.Register_Email,
-.Register_Password {
-  margin: 10px;
 }
 #email,
 #Password,
@@ -949,187 +653,9 @@ form {
   border: 2px solid black;
   border-radius: 4px;
 }
-.Register_Container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: space-between;
-  align-items: center;
-  width: 83%;
-}
-.Cont_Head1 {
-  font-size: 15px;
-  display: flex;
-  justify-content: flex-start;
-}
-.Cont_Head2 {
-  font-size: 15px;
-  display: flex;
-  justify-content: flex-end;
-}
-.Cont_Head2 a {
-  font-size: 15px;
-  color: black;
-  text-decoration: none;
-}
-.Register_Btn {
-  margin: 10px;
-}
-#btn {
-  background-color: red;
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
-  width: 24vw;
-  height: 6vh;
-}
-.Register_Head2,
-.Register_Head2 {
-  text-align: center;
-  margin: 20px;
-  color: black;
-  font-size: 12px;
-}
-.Register_Items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 20px;
-}
-.Register_Items a {
-  font-size: 30px;
-  color: black;
-  text-decoration: none;
-}
-.Register_Login {
-  margin: 0px 0px 5px 0px;
-  color: red;
-  font-size: 20px;
-}
-.Register_Login a {
-  font-size: 17px;
-  color: black;
-  text-decoration: none;
-  color: red;
-}
-@media screen and (max-width: 840px) {
-  .Container {
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: fit-content;
-    background: white;
-    height: fit-content;
-    margin: 20px;
-  }
-}
-
-/* Return Page */
-.Return_Page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: whitesmoke;
-  width: 100vw;
-}
-.Return {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: fit-content;
-  width: 80vw;
-  padding: 20px;
-  background-color: white;
-  color: black;
-  margin: 20px;
-  margin-top: 50px;
-}
-.Return_Head {
-  font-size: 30px;
-  margin: 10px;
-}
-.Return_Para {
-  font-size: 16px;
-}
-
-/* Support Page */
-.Support_Page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: whitesmoke;
-  width: 100vw;
-}
-.Support {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 45vh;
-  width: 80vw;
-  padding: 20px;
-  background-color: white;
-  color: black;
-  margin: 20px;
-  margin-top: 50px;
-}
-.Support_Head {
-  font-size: 30px;
-  margin: 10px;
-}
-.Support_Para {
-  font-size: 16px;
-}
-
-/* Term & Condition Page */
-.Term_Page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: whitesmoke;
-  height: 678vh;
-  width: 100vw;
-}
-.Term {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: fit-content;
-  width: 80vw;
-  padding: 20px;
-  background-color: white;
-  color: black;
-  margin: 20px;
-  margin-top: 50px;
-}
-.Term_Head {
-  font-size: 30px;
-  margin: 10px;
-}
-.Term_Para {
-  font-size: 16px;
-}
-
 .dot::before{
   content: "";
   left: -20px;
-  right: 0;
-  bottom: 0;
   top: 0px;
   position: relative;
   background-color: black;
@@ -1143,9 +669,7 @@ form {
   content: '\f46c';
     font-family: "Line Awesome Free";
     top: 17px;
-    left: 0;
     right: 10px;
-    bottom: 0;
     position: relative;
     font-size: 50px;
     font-weight: 700;
@@ -1168,8 +692,6 @@ form {
   content: '';
   top: 70px;
   left: -145px;
-  bottom: 0;
-  right: 0;
   background: black;
   position: relative;
   display: inline-block;
@@ -1180,8 +702,6 @@ form {
   content: '';
   top: 70px;
   left: -177px;
-  bottom: 0;
-  right: 0;
   background: black;
   position: relative;
   display: inline-block;
@@ -1192,8 +712,6 @@ form {
   content: '';
   top: 70px;
   left: -135px;
-  bottom: 0;
-  right: 0;
   background: black;
   position: relative;
   display: inline-block;
@@ -1204,8 +722,6 @@ form {
   content: '';
   top: 70px;
   left: -162px;
-  bottom: 0;
-  right: 0;
   background: black;
   position: relative;
   display: inline-block;
@@ -1222,7 +738,6 @@ form {
   display: inline-block;
   background: black;
 }
-
 .statuses ul li.order_placed{
   color: gray;
 }
@@ -1235,8 +750,6 @@ form {
 .statuses ul li.order_placed span::after{ 
   background-color: gray;
 }
-
-
 .statuses ul li.order_current{
   color: red;
 }
@@ -1252,4 +765,108 @@ form {
 .time{
   color: gray;
   margin: 20px;
+}
+/* responsive design */
+@media screen and (max-width: 924px) {
+  nav {
+    top: 0;
+    position: sticky;
+  }
+  .Foot_Cont1,
+  .Foot_Cont2 {
+    width: 100%;
+  }
+  .Foot_Cont3,
+  .Foot_Cont4 {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 680px) {
+  .Header_Container {
+    background-color: var(--bgcolor);
+    height: 33vh;
+    transition: all 3ms;
+  }
+  .Head_Cont_Right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 7px;
+  }
+  .Head_Cont_Left {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 7px;
+  }
+  .Navbar_Container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  nav {
+    top: 0;
+    position: sticky;
+  }
+  .Categories {
+    flex-direction: column;
+    width: 100%;
+  }
+  .Categories_Middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .Header_Container{
+  display: none;
+  }
+  #bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .line{
+    background-color: red;
+  height: 5px;
+  width: 25px;
+  border-radius: 7px;
+  border: 2px solid red;
+  }
+  .Navbar_Left{
+    display: flex;
+justify-content: space-between;
+align-items: center;
+flex-direction: row;
+flex-wrap: wrap;
+width: 100%;
+  }
+  .Header_Container.active{
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    height: 100%;
+  }
+  .Product_Container1{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .product_bx{
+    flex-direction: column;
+    width: 100%;
+  }
+  .Banner_Container{
+    justify-content: center;
+    align-items: center;
+  }
 }

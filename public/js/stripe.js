@@ -27,6 +27,7 @@ export async function stripeIntegration() {
       });
     }
   }
+if(paymentType){
   paymentType.addEventListener("change", (e) => {
     if ("card" === e.target.value) {
       mountWidget();
@@ -34,4 +35,5 @@ export async function stripeIntegration() {
       card.destroy();
     }
   });
+}
 }
