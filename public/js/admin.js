@@ -11,7 +11,7 @@ export function initAdmin() {
     })
     .then((res) => {
       orders = res.data;
-      if(tBody){
+      if (tBody) {
         tBody.innerHTML = generateOrder(orders);
       }
       function renderItem(orders) {
@@ -24,7 +24,7 @@ export function initAdmin() {
         `;
         });
       }
-  
+
       function generateOrder(order) {
         return order
           .map((ele) => {
@@ -44,11 +44,21 @@ export function initAdmin() {
            <form action="/admin/order/status" method="post" id="form"> 
            <input type="hidden" name="orderId" value="${ele._id}" />
           <select name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="this.form.submit()">
-            <option  name= "status" value="order_placed" ${ele.status === "order_placed" ? "selected" : ""}>orderplaced</option>
-            <option  name= "status" value="confirmed" ${ele.status === "confirmed" ? "selected" : ""}>confirmed</option>
-            <option  name= "status" value="prepared" ${ele.status === "prepared" ? "selected" : ""}>prepared</option>
-            <option  name= "status" value="delivered" ${ele.status === "delivered" ? "selected" : ""}>delivered</option>
-            <option  name= "status" value="placed" ${ele.status === "placed" ? "selected" : ""}>placed</option>
+            <option  name= "status" value="order_placed" ${
+              ele.status === "order_placed" ? "selected" : ""
+            }>orderplaced</option>
+            <option  name= "status" value="confirmed" ${
+              ele.status === "confirmed" ? "selected" : ""
+            }>confirmed</option>
+            <option  name= "status" value="prepared" ${
+              ele.status === "prepared" ? "selected" : ""
+            }>prepared</option>
+            <option  name= "status" value="delivered" ${
+              ele.status === "delivered" ? "selected" : ""
+            }>delivered</option>
+            <option  name= "status" value="placed" ${
+              ele.status === "placed" ? "selected" : ""
+            }>placed</option>
           </select>
            </form>
            </td>
@@ -61,4 +71,4 @@ export function initAdmin() {
           .join("");
       }
     });
-};
+}

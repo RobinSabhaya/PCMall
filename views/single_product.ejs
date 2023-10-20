@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Mall | single product</title>
+</head>
+
+<body>
+    <div class="grid grid-cols-2 place-content-center">
+        <div class="flex justify-center items-end flex-col flex-wrap w-auto p-10 mr-3">
+            <img src="<%= productData.link %>" alt="" height="200px" width="200px" id="productImg">
+        </div>
+        <div class="flex justify-start items-start flex-col flex-wrap w-1/2 p-10 ml-5">
+            <div class="mb-3 text-xl ">
+                <%= productData.name %>
+            </div>
+            <div>
+                <span class="text-red-500 text-xl">
+                    - <%= productData.discount %>%
+                        &nbsp;
+                </span>
+                <del class="text-black text-xl">
+                    ₹ <%= productData.price %>
+                </del>
+                <br>
+                <div class="text-black text-3xl mt-4">
+                    <span class="mr-6">₹ <%= productData.price - (((productData.price) * (productData.discount))/100) %>
+                    </span>
+                    &nbsp;
+                    <button class="bg-red-700 text-white text-sm px-5 py-3 rounded-full mt-2 btn"
+                        data-order="<%= JSON.stringify(productData) %>">Add to Cart</button>
+                </div>
+                <div class="text-black mt-10 text-xl ">
+                    color : <% productData.colors.forEach(color=>{%>
+                        <span class="pl-4 pr-4 pt-2 ml-3" style="border-radius : 7px; background-color: <%= color %>; ">
+                        </span>
+                        <span class="m-2">
+                            <%= color %>
+                        </span>
+                        <%}) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-center items-center flex-row flex-wrap gap-3">
+        <div data-product="<%= productData.link %>" class="img_bx">
+            <img src="<%= productData.link %>" alt="img" height="120px" width="120px">
+        </div>
+        <div data-product="<%= productData.img.img1 %>" class="img_bx p-4">
+            <img src="<%= productData.img.img1 %>" alt="img1" height="120px" width="120px">
+        </div>
+        <div data-product="<%= productData.img.img2 %>" class="img_bx p-4">
+            <img src="<%= productData.img.img2 %>" alt="img2" height="120px" width="120px">
+        </div>
+        <div data-product="<%= productData.img.img3 %>" class="img_bx p-4">
+            <img src="<%= productData.img.img3 %>" alt="img3" height="120px" width="120px">
+        </div>
+        <div data-product="<%= productData.img.img4 %>" class="img_bx p-4">
+            <img src="<%= productData.img.img4 %>" alt="img4" height="120px" width="120px">
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,5 +1,0 @@
-const productController = () =>{
-    return {
-        
-    }
-}

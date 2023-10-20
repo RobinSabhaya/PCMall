@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invoice</title>
+</head>
+
+<body>
+    <div class="invoice_Bg">
+        <div class="invoiceContainer">
+            <h1 class="invoiceHead1">INVOICE</h1>
+            <h3 class="invoiceHead2">PC Mall</h3>
+            <h3 class="invoiceHead3">Mahavir Swami College Of Engineering & Technology,Surat</h3>
+        </div>
+        <div class="invoice_container">
+            <div>
+                <h2 class="invoiceHead4"><b>BILL TO</b></h2>
+                <p>
+                    <%= orderData?.customerId?.name %>
+                </p>
+            </div>
+            <div>
+                <h2 class="invoiceHead4"><b>SHIP TO</b></h2>
+                <p>
+                    <%= orderData?.customerId?.name %>
+                </p>
+            </div>
+            <div>
+                <h2 class="invoiceHead4"><b>INVOICE # : </b></h2>
+                <h2 class="invoiceHead4"><b>INVOICE DATE : </b> </h2>
+                <h2 class="invoiceHead4"><b>P.O. # : </b></h2>
+                <h2 class="invoiceHead4"><b>DUE DATE # : </b></h2>
+            </div>
+            <div>
+                <h3 class="invoiceHead4">
+                    <%= orderData?.customerId?._id %>
+                </h3>
+                <h3 class="invoiceHead4">
+                    <%= moment(orderData.createdAt).format("DD/MM/YYYY") %>
+                </h3>
+                <h3 class="invoiceHead4">
+                    <%= moment(orderData.createdAt).format("DD/MM/YYYY") %>
+                </h3>
+                <h3 class="invoiceHead4">
+                    <%= moment(orderData.updatedAt).format("DD/MM/YYYY") %>
+                </h3>
+            </div>
+        </div>
+        <div>
+            <hr>
+            <table>
+                <tr>
+                    <th>
+                        QTY
+                    </th>
+                    <th>
+                        DESCRIPTION
+                    </th>
+                    <th>
+                        UNIT PRICE
+                    </th>
+                    <th>
+                        AMOUNT
+                    </th>
+                </tr>
+                <% for(i of Object.entries(orderData.items)){%>
+                    <% for(item=1;item < i.length;item++){%>
+                        <tr class="invoiceRow">
+                            <td class="invoiceDesc">
+                                <%= i[item]?.qty %>
+                            </td>
+                            <td class="invoiceDesc">
+                                <%= i[item]?.item?.name %>
+                            </td>
+                            <td class="invoiceDesc">
+                                ₹ <%= i[item]?.item?.price %>
+                            </td>
+                            <td class="invoiceDesc">
+                                ₹ <%= i[item]?.item?.price * i[item]?.qty %>
+                            </td>
+                            <input type="hidden" name="" id="total_amount"
+                                value="<%= i[item]?.item?.price * i[item]?.qty %>">
+                        </tr>
+                        <%} %>
+                            <%}%>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="invoicePadding">Subtotal</td>
+                                    <td>
+                                        ₹ <%= orderData?.cart?.totalPrice %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="invoicePadding">GST 12.0%</td>
+                                    <td>
+                                        ₹ <%= ((orderData?.cart?.totalPrice) * 12)/100 %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="invoicePadding"><b>TOTAL</b></td>
+                                    <td>
+                                        ₹ <%= (((orderData?.cart?.totalPrice) * 12)/100) + (orderData?.cart?.totalPrice)
+                                            %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="invoicePadding"><b>SIGN</b></td>
+                                    <td><i><u><b>Robin Sabhaya</b></u></i></td>
+                                </tr>
+            </table>
+        </div>
+        <div class="invoiceFooter">
+            <div class="invoice_Foot1">
+                <h1>Thank You</h1>
+            </div>
+            <div class="invoice_Foot2">
+                <h3 class="invoiceHead2">TERMS & CONDITIONS</h3>
+                <h4 class="invoiceHead4">Payments is due to within 15 days
+                </h4>
+                <h4 class="invoiceHead4">
+                    State Bank Of India <br>
+                    Account Number : 123456789 <br>
+                    Routing Number : 123456789
+                </h4>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

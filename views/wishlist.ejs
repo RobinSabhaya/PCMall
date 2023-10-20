@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Mall | Wishlist Page</title>
+</head>
+
+<body>
+    <div class="Product_Container1">
+        <% if(wishlistData.length> 0){%>
+            <% wishlistData.forEach(product=>{%>
+                <div class="product_bx">
+                    <a href="/singleproduct/<%= product.wishlist._id %>"
+                        class="flex justify-center items-center flex-col">
+                        <div>
+                            <img src="<%= product.wishlist.link%>" alt="img" height="120px" width="120px" />
+                        </div>
+                        <div>
+                            <%= product.wishlist.name%>
+                        </div>
+                        <div class="text-red-700 text-xl font-bold m-2">₹<%= product.wishlist.price%>
+                        </div>
+                    </a>
+                    <div class="flex gap-5">
+                        <button class="bg-red-700 text-white text-sm px-5 py-3 rounded-full mt-2 btn"
+                            data-order="<%= JSON.stringify(product) %>">Add to Cart</button>
+                        <div><i class="las la-heart wishlistProduct"
+                                data-wishproduct="<%= JSON.stringify(product) %>"></i>
+                        </div>
+                    </div>
+                </div>
+                <%}) %>
+                    <%} else {%>
+                        <div class="flex justify-center items-center flex-col emptyWishlist">
+                            <img src="/wishlist.avif" alt="" height="500px" width="500px">
+                            <h1 class="text-black text-2xl">Wishlist is empty!!!</h1>
+                            <h2 class="text-black text-xl">Please Go To <a href="/" class="text-red-500">Home</a>
+                            </h2>
+                        </div>
+                        <%} %>
+    </div>
+</body>
+
+</html>

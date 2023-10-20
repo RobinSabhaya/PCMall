@@ -4,14 +4,14 @@
     class="cartBox flex justify-between items-center flex-row flex-wrap w-fit h-fit p-6 rounded-lg"
   >
     <div>
-      <img src="<%= ele.item.img %>" alt="" height="100px" width="100px" />
+      <img src="<%= ele.item.link %>" alt="" height="100px" width="100px" />
     </div>
     <div class="flex flex-wrap w-1/2"><%= ele.item.name %></div>
     <div>
       <!-- <form action="/cc" method="post"> -->
-        <button class="text-2xl p-4" name="add"  id="btnAdd">+</button>
-        <div class="text-black text-xl "><%= ele.qty %> pcs.</div>
-        <button class="text-2xl p-4" name="remove" id="btnRemove">-</button>
+        <button class="text-2xl bg-slate-300 px-3 m-1 rounded-md" name="add"  id="btnAdd" >+</button>
+        <div class="text-black text-xl " id="qty"><%= ele.qty %> pcs.</div>
+        <button class="text-2xl bg-slate-300 px-3 rounded-md m-1" name="remove" id="btnRemove">-</button>
       <!-- </form> -->
     </div>
     <div class="m-3 text-red-500 text-xl">₹ <%= ele.item.price%></div>
@@ -64,7 +64,8 @@
   else {%>
     <div class="flex justify-center flex-col">
       <img src="/cart.png" alt="Empty Cart" height="300px" width="300px">
-      <h1 class="text-3xl m-5">Cart is empty!!</h1>
+      <h1 class="text-3xl mt-5 mx-5">Cart is empty!!</h1>
+      <h2 class="mx-5 mt-3">Go to home page. &nbsp; <a href="/" class="decoration-none text-red-500">home</a></h2>
     </div>  
   <%}%>
 
