@@ -1,44 +1,48 @@
-      <div id="Container">
-        <div id="Loader">
+<div id="Container">
+    <div id="Loader">
 
-        </div>
     </div>
-   <section id="Body">
+</div>
+<section id="Body">
     <section class="Register" id="Register">
         <div class="Container">
             <div class="text-red-500 text-sm">
                 <% if(messages.error) {%>
                     <% messages.error.forEach((ele)=>{%>
-                        <%= ele.msg %>    
-                    <%})%>
-                <%}%>
+                        <%= ele.msg %>
+                            <%})%>
+                                <%}%>
+                                    <% if(messages.credentials){%>
+                                        <%= messages.credentials %>
+                                            <%}%>
             </div>
             <div class="Register_Head">
                 <h1>Register to your account.</h1>
             </div>
-           <form action="" method="post">
-             <div class="Register_Name">
-                <input type="text" name="name" id="Name"  placeholder=" Full Name">
-            </div>
-            <div class="Register_Email">
-                <input type="email" name="email" id="email"  placeholder="Email">
-            </div>
-           
-            <div class="Register_Password">
-                <input type="password" name="password" id="Password"  placeholder="Password">
-            </div>
-            <div class="Register_Password">
-                <input type="password" name="cpassword" id="password"  placeholder="Password">
-            </div>
-            <div class="Register_Container">
-                <div class="Cont_Head1">
-                    <input type="checkbox" name="Checkbox" id="Checkbox"> &nbsp; By signing up you agree to our terms and conditions.
+            <form action="" method="post">
+                <div class="Register_Name">
+                    <input type="text" name="name" id="Name" placeholder=" Full Name">
                 </div>
-            </div>
-            <div class="Register_Btn" type="submit">
-                <button id="btn">Create Account</button>
-            </div>
- </form>
+                <div class="Register_Email">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                </div>
+
+                <div class="Register_Password">
+                    <input type="password" name="password" id="Password" placeholder="Password">
+                </div>
+                <div class="Register_Password">
+                    <input type="password" name="cpassword" id="password" placeholder="Password">
+                </div>
+                <div class="Register_Container">
+                    <div class="Cont_Head1">
+                        <input type="checkbox" name="Checkbox" id="Checkbox"> &nbsp; By signing up you agree to our
+                        terms and conditions.
+                    </div>
+                </div>
+                <div class="Register_Btn" type="submit">
+                    <button id="btn">Create Account</button>
+                </div>
+            </form>
             <div class="Register_Head2">
                 <h2>Or Join With</h2>
             </div>
@@ -55,7 +59,7 @@
             </div>
         </div>
     </section>
-   </section>
+</section>
 </body>
-</html>
 
+</html>
