@@ -43,29 +43,35 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
       </div>
       <div class="Head_Cont_Right">
         <div class="Head_Item3"><a href="/">Home</a></div>
-        <div class="Head_Item3"><a href="/login">Login</a></div>
-        <div class="Head_Item3"><a href="/register">Registration</a></div>
-        <div class="Head_Item3">
-          <form action="/logout" method="post" id="form">
-            <a onclick="logOut()">Logout</a>
-          </form>
-        </div>
-        <% if(session.user) {%>
-          <div class="flex w-full">
-            <i class="fa-solid fa-circle-user"></i>&nbsp;
-            <div class="text-red-700 font-bold">
-              <%= session.user.user%>
-            </div>
+        <% if(session.user){%>
+          <div class="Head_Item3">
+            <form action="/logout" method="post" id="form">
+              <a onclick="logOut()" class="cursor-pointer">Logout</a>
+            </form>
           </div>
-          <%} %>
-            <% if(user) {%>
-              <div class="flex w-full gap-3">
-                <img src="<%= user.picture %>" height="30px" width="30px" style="border-radius: 50%" alt="profile" />
-                <div class="text-red-500 font-bold">
-                  <%= user.displayName %>
+          <%}else{%>
+            <div class="Head_Item3"><a href="/login">Login</a></div>
+            <div class="Head_Item3"><a href="/register">Registration</a></div>
+            <%}%>
+              <% if(session.user) {%>
+                <div class="flex w-full">
+                  <div class="font-bold flex gap-2 justify-center items-center">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <a href="/user/<%= session.user._id %>" style="color: red;">
+                      <%= session.user.name%>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <%} %>
+                <%} %>
+                  <% if(user) {%>
+                    <div class="flex w-full gap-3">
+                      <img src="<%= user.picture %>" height="30px" width="30px" style="border-radius: 50%"
+                        alt="profile" />
+                      <div class="text-red-500 font-bold">
+                        <%= user.displayName %>
+                      </div>
+                    </div>
+                    <%} %>
       </div>
     </div>
   </header>
@@ -88,17 +94,26 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
       </div>
       <div class="Navbar_Right">
         <ul>
-          <li><i class="fa-solid fa-code-compare"></i> Compare</li>
-          <a href="/customer/wishlist/<%= session?.user?._id %>">
-            <li><i class="fa-solid fa-heart"></i> Wishlist</li>
-          </a>
-          <a href="/cart">
-            <li>
-              <span class="text-center text-xl" id="cart">
-                <%= session.cart ? session.cart.totalQty : "" %>
-              </span><i class="fa-solid fa-cart-shopping"></i> Cart
-            </li>
-          </a>
+          <%if(session?.user?.role==="customer" ){%>
+            <a href="/<%= session?.user?.role %>/order">
+              <li><i class="fa-solid fa-code-compare"></i> Order</li>
+            </a>
+            <a href="/<%= session?.user?.role %>/wishlist/<%= session?.user?._id %>">
+              <li><i class="fa-solid fa-heart"></i> Wishlist</li>
+            </a>
+            <a href="/cart">
+              <li>
+                <span class="text-center text-xl" id="cart">
+                  <%= session.cart ? session.cart.totalQty : "" %>
+                </span><i class="fa-solid fa-cart-shopping"></i> Cart
+              </li>
+            </a>
+            <%}%>
+              <%if (session?.user?.role==="admin" ){%>
+                <a href="/<%= session?.user?.role %>/order">
+                  <li><i class="fa-solid fa-code-compare"></i> Order</li>
+                </a>
+                <%}%>
         </ul>
       </div>
     </div>
@@ -196,10 +211,13 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
         notyf.success("Logout successfully");
       }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
     <script src="
         https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js
         "></script>
     <script src="/index.js"></script>
+
 </body>
 
 </html>

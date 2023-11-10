@@ -4,13 +4,36 @@ const route = express.Router();
 const orderController = require("../controllers/customer/orderController");
 const invoiceController = require("../controllers/customer/invoiceController");
 const wishlistController = require("../controllers/customer/wishlistController");
-
-route.get("/customer/order", orderController().getOrder);
-route.post("/customer/order", orderController().postOrder);
-route.get("/customer/order/:id", orderController().singleOrder);
-route.get("/customer/invoice/:id", invoiceController().getInvoice);
-route.post("/customer/wishlist", wishlistController().postWishlist);
-route.get("/customer/wishlist/:id", wishlistController().getWishlist);
-route.delete("/customer/wishlist/:id", wishlistController().deleteWishlist);
+const userController = require("../controllers/admin/userController");
+const { auth, isCustomer } = require("../middlewares/auth");
+route.get("/customer/order", [auth, isCustomer], orderController().getOrder);
+route.post("/customer/order", [auth, isCustomer], orderController().postOrder);
+route.get(
+  "/customer/order/:id",
+  [auth, isCustomer],
+  orderController().singleOrder
+);
+route.get(
+  "/customer/invoice/:id",
+  [auth, isCustomer],
+  invoiceController().getInvoice
+);
+route.post(
+  "/customer/wishlist",
+  [auth, isCustomer],
+  wishlistController().postWishlist
+);
+route.get(
+  "/customer/wishlist/:id",
+  [auth, isCustomer],
+  wishlistController().getWishlist
+);
+route.get("/user/:id", [auth], userController().getUpdateUser);
+route.post("/user/:id", [auth], userController().updateUser);
+route.delete(
+  "/customer/wishlist/:id",
+  auth,
+  wishlistController().deleteWishlist
+);
 
 module.exports = route;

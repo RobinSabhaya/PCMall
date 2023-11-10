@@ -1,0 +1,76 @@
+<div id="Container">
+    <div id="Loader"></div>
+</div>
+<section id="Body">
+    <h1 class="text-center font-bold text-2xl m-3">All Products</h1>
+    <div class="flex justify-end w-full">
+        <a href="/addproduct">
+            <button class="bg-blue-700 text-white text-sm px-5 rounded-md py-3 mx-12 my -2">
+                Add Product
+            </button>
+        </a>
+    </div>
+    <section class="Product" id="Product">
+        <div class="Product_Container2">
+            <% if(productData.length> 0) {%>
+                <% productData.forEach((data)=>{%>
+                    <div class="product_bx">
+                        <a href="/singleproduct/<%= data._id %>"
+                            class="flex justify-center items-center flex-col gap-5">
+                            <div>
+                                <img src="http://localhost:3000/uploads/<%= data.img[0]%>" alt="img" height="120px"
+                                    width="120px" />
+                            </div>
+                            <div class="text-center">
+                                <%= data.name%>
+                            </div>
+                            <div class="text-red-700 text-xl font-bold m-2">₹<%= data.price%>
+                            </div>
+                        </a>
+                        <div>
+                            <a href="/product/<%= data._id %>">
+                                <button class="bg-green-700 text-white text-sm px-5 rounded-md py-3 mt-2">
+                                    Edit
+                                </button>
+                            </a>
+                            <button class="bg-red-700 text-white text-sm px-5 py-3 rounded-md  mt-2 delBtns" id="delBtn"
+                                data-delid="
+                            <%= data._id %>">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                    <%})%>
+                        <%}%>
+
+        </div>
+    </section>
+    <script>
+        const delBtns = document.querySelectorAll('.delBtns');
+        delBtns.forEach((delBtn) => {
+            delBtn.addEventListener('click', () => {
+                const notyf = new Notyf({
+                    duration: 2000,
+                    position: {
+                        x: "right",
+                        y: "top",
+                    },
+                    ripple: true,
+                });
+                const delId = delBtn.dataset.delid.trim();
+                const URL = window.location.href;
+                fetch(`${URL}/${delId}`, {
+                    method: "DELETE",
+                    headers: { "Content-type": "application/json; charset=UTF-8" }
+                }).then((res) => {
+                    return res.json();
+                }).then((resData) => {
+                    console.log(resData);
+                    notyf.success(resData.message)
+                    location.reload();
+                }).catch(err => {
+                    notyf.error(err);
+                });
+            })
+        })
+    </script>

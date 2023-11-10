@@ -1,0 +1,61 @@
+<div id="Container">
+  <div id="Loader">
+
+  </div>
+</div>
+<section id="Body">
+  <h1 class="m-8 text-black font-bold text-2xl">
+    Order Summary
+  </h1>
+  <div class="h-fit w-full flex items-center flex-col my-10  overflow-x-auto ">
+    <table class="table-auto border-collapse border border-slate-300 w-10/12 ">
+      <thead>
+        <tr align="left">
+          <th class="border border-slate-300 p-2">Orders</th>
+          <th class="border border-slate-300 p-2">Phone</th>
+          <th class="border border-slate-300 p-2">Address</th>
+          <th class="border border-slate-300 p-2">paymentStatus</th>
+          <th class="border border-slate-300 p-2">Status</th>
+          <th class="border border-slate-300 p-2">CreatedAt</th>
+          <th class="border border-slate-300 p-2">UpdatedAt</th>
+          <th class="border border-slate-300 p-2">Invoice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% orderData.forEach(order=>{
+          %>
+          <tr align="left">
+            <td class="border border-slate-300 p-3"><a href="/customer/order/<%= order._id %>" class="text-red-500">
+                <%= order._id %>
+              </a></td>
+            <td class="border border-slate-300 p-3">
+              <%= order.phone%>
+            </td>
+            <td class="border border-slate-300 p-3">
+              <%= order.address%>
+            </td>
+            <td class="border border-slate-300 p-3">
+              <%= order.paymentStatus%>
+            </td>
+            <td class="border border-slate-300 p-3">
+              <%= order.status%>
+            </td>
+            <td class="border border-slate-300 p-3">
+              <%= dayjs(order.createdAt).format("DD/MM/YYYY hh:mm A") %>
+            </td>
+            <td class="border border-slate-300 p-3">
+              <%= dayjs(order.updatedAt).format("DD/MM/YYYY hh:mm A") %>
+            </td>
+            <% if (order.status){%>
+              <td class="border border-slate-300 p-3">
+                <a href="/customer/invoice/<%= order._id %>">
+                  <i class="fa-solid fa-download"></i>
+                </a>
+              </td>
+              <%}%>
+          </tr>
+          <% })%>
+      </tbody>
+    </table>
+  </div>
+</section>

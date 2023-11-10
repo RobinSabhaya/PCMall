@@ -72,6 +72,8 @@ header {
 nav {
   top: 0;
   position: sticky;
+  background-color: rgb(100%, 100%, 100% / 0.7);
+  backdrop-filter: blur(30px);
 }
 .Navbar_Container {
   display: flex;
@@ -153,6 +155,12 @@ nav {
 .Product_Container1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  gap: 20px;
+}
+.Product_Container2 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   place-items: center;
   gap: 20px;
 }
@@ -914,6 +922,9 @@ form {
   .Foot_Cont3,
   .Foot_Cont4 {
     width: 100%;
+  }
+  .Container {
+    width: fit-content;
   }
 }
 @media screen and (max-width: 680px) {

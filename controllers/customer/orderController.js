@@ -1,4 +1,4 @@
-const moment = require("moment");
+const dayjs = require("dayjs");
 const orderModel = require("./../../db/models/orderSchema");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const orderController = () => {
@@ -7,7 +7,7 @@ const orderController = () => {
       const orderData = await orderModel.find().sort({
         createdAt: -1,
       });
-      return res.status(200).render("order", { orderData, moment });
+      return res.status(200).render("order", { orderData, dayjs });
     },
     async singleOrder(req, res) {
       const { id } = req.params;

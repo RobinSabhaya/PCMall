@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-const moment = require("moment");
+const dayjs = require("dayjs");
 const fs = require("fs");
 const path = require("path");
 const orderModel = require("../../db/models/orderSchema");
@@ -20,7 +20,7 @@ const invoiceController = () => {
       );
       const html = ejs.render(ejsData, {
         orderData: orderData,
-        moment: moment,
+        dayjs: dayjs,
       });
       await page.setContent(html, {
         waitUntil: "domcontentloaded",

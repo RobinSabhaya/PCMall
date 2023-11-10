@@ -1,0 +1,57 @@
+<div id="Container">
+    <div id="Loader"></div>
+</div>
+<section id="Body">
+    <% if(orderData && productData && orderPerMonth){%>
+        <div class="flex flex-row gap-5 m-5 justify-center items-center">
+            <a href="/admin/order">
+                <div
+                    class=" flex justify-center items-center flex-col w-fit p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Orders<i
+                            class="fa-solid fa-bag-shopping text-red-500 text-3xl ml-3"></i></h5>
+                    <p class="text-xl text-gray-700 dark:text-gray-400">
+                        <%= orderData.length %>
+                    </p>
+                </div>
+            </a>
+            <div
+                class=" flex justify-center items-center flex-col w-fit p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">Revenue<i
+                        class="fa-solid fa-arrow-trend-up text-red-500 text-3xl ml-3"></i></h5>
+                <p class="text-xl text-gray-700 dark:text-gray-400">
+                    ₹ <%= totalPrice %>
+                </p>
+            </div>
+            <a href="/product">
+                <div
+                    class=" flex justify-center items-center flex-col w-fit p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">Total Products<i
+                            class="fa-solid fa-lightbulb text-red-500 text-3xl ml-3"></i></h5>
+                    <p class="text-xl text-gray-700 dark:text-gray-400">
+                        <%= productData.length %>
+                    </p>
+                </div>
+            </a>
+            <div
+                class=" flex justify-center items-center flex-col w-fit p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">Net Profit (₹)<i <
+                        class="fa-solid fa-money-bill-1-wave text-red-500 text-3xl ml-3"></i></h5>
+                <p class="text-xl text-gray-700 dark:text-gray-400">
+                    ₹ <%= (totalPrice - (totalPrice * 30)/100) %>
+                </p>
+            </div>
+            <a href="/admin/user">
+                <div
+                    class=" flex justify-center items-center flex-col w-fit p-8 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">Users<i <
+                            class="fa-solid fa-user text-red-500 text-3xl ml-3"></i></h5>
+                    <p class="text-xl text-gray-700 dark:text-gray-400">
+                        <%= userData.length %>
+                    </p>
+                </div>
+            </a>
+        </div>
+        <input type="hidden" name="" id="hiddenInp" value="<%= orderPerMonth %>">
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        <%}%>
+</section>

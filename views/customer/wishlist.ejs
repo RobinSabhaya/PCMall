@@ -15,7 +15,8 @@
                     <a href="/singleproduct/<%= product.wishlist._id %>"
                         class="flex justify-center items-center flex-col">
                         <div>
-                            <img src="<%= product.wishlist.link%>" alt="img" height="120px" width="120px" />
+                            <img src="http://localhost:3000/uploads/<%= product.wishlist.img[0]%>" alt="img"
+                                height="120px" width="120px" />
                         </div>
                         <div>
                             <%= product.wishlist.name%>

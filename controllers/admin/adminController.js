@@ -14,15 +14,15 @@ const adminController = () => {
           }
         });
     },
-    async orderStatus(req,res){
-      const {orderId,status} = req.body;
-      const statusData = await orderModel.findOne({_id : orderId});
-      const eventEmitter = req.app.get('eventEmitter');
-      eventEmitter.emit("orderUpdated",{id : orderId,status : status});
+    async orderStatus(req, res) {
+      const { orderId, status } = req.body;
+      const statusData = await orderModel.findOne({ _id: orderId });
+      const eventEmitter = req.app.get("eventEmitter");
+      eventEmitter.emit("orderUpdated", { id: orderId, status: status });
       statusData.status = status;
       await statusData.save();
-      return res.redirect('/admin/order');
-    }
+      return res.redirect("/admin/order");
+    },
   };
 };
 

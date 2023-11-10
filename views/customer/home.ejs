@@ -17,7 +17,7 @@
           <div class="product_bx">
             <a href="/singleproduct/<%= data._id %>" class="flex justify-center items-center flex-col">
               <div>
-                <img src="<%= data.link%>" alt="img" height="120px" width="120px" />
+                <img src="http://localhost:3000/uploads/<%= data.img[0]%>" alt="img" height="120px" width="120px" />
               </div>
               <div>
                 <%= data.name%>
@@ -35,7 +35,7 @@
             <%}%>
 
     </div>
-    <div class="Product_Container">
+    <!-- <div class="Product_Container">
       <div class="Product_Head">Best Selling</div>
       <div class="Product_Head2">TOP 20</div>
     </div>
@@ -49,10 +49,10 @@
       <div class="Catg_Mid_Head2">Top 10 Brands</div>
     </div>
     <div class="Categories_Right">
-      <a href="/allproduct">View All Brands</a>
+      <a href="/product">View All Brands</a>
     </div>
   </section>
   <section class="Product" id="Product">
     <section class="Product_Container_It"></section>
+  </section> -->
   </section>
-</section>

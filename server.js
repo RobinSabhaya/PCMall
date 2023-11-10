@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const cookieparser = require("cookie-parser");
 const expressLayout = require("express-ejs-layouts");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -22,8 +21,8 @@ const store = MongoStore.create({
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    saveUninitialized: true,
-    resave: true,
+    saveUninitialized: false,
+    resave: false,
     store,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
@@ -40,13 +39,21 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json());
-app.use(cookieparser());
 app.use(favicon(__dirname + "/public/image/favicon.ico"));
 app.use(expressLayout);
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.static(path.join(__dirname, "/public/css")));
 app.use(express.static(path.join(__dirname, "/public/js")));
 app.use(express.static(path.join(__dirname, "/public/image")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.set("views", [
+  "views",
+  "views/admin",
+  "views/customer",
+  "views/common",
+  "views/auth",
+  "views/error",
+]);
 app.set("view engine", "ejs");
 app.use(route);
 

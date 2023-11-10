@@ -61,16 +61,16 @@ img_bx.forEach((prd) => {
   });
 });
 
-if (productImg) {
-  productImg.addEventListener("mousemove", (e) => {
-    // magnifierLens.style.left = e.clientX - magnifierLens.offsetWidth / 2 + "px";
-    // magnifierLens.style.top = e.clientY - magnifierLens.offsetHeight / 2 + "px";
-    productImg.style.transform =
-      "scale(" +
-      (e.clientX - productImg.offsetLeft) / productImg.offsetWidth +
-      ")";
-  });
-}
+// if (productImg) {
+//   productImg.addEventListener("mousemove", (e) => {
+//     // magnifierLens.style.left = e.clientX - magnifierLens.offsetWidth / 2 + "px";
+//     // magnifierLens.style.top = e.clientY - magnifierLens.offsetHeight / 2 + "px";
+//     productImg.style.transform =
+//       "scale(" +
+//       (e.clientX - productImg.offsetLeft) / productImg.offsetWidth +
+//       ")";
+//   });
+// }
 
 // Wishlist page
 try {
@@ -102,7 +102,7 @@ try {
             },
             ripple: true,
           });
-          notyf.error("Login failed");
+          notyf.error("Login Required");
           product.classList.remove("las");
         });
     });
@@ -111,6 +111,80 @@ try {
   console.log(err);
 }
 
+// For dashboard charts
+const hiddenIp = document.getElementById("hiddenInp");
+if (hiddenIp) {
+  var xValues = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  // const xValues = Utils.months({count: 7});
+  var yValues = hiddenIp.value.split(",");
+
+  var barColors = [
+    "rgba(255, 99, 132, 0.2)",
+    "rgba(255, 159, 64, 0.2)",
+    "rgba(255, 205, 86, 0.2)",
+    "rgba(75, 192, 192, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(153, 102, 255, 0.2)",
+    "rgba(201, 203, 207, 0.2)",
+    "rgba(233,114,77, 0.2)",
+    "rgba(214,215,39, 0.2)",
+    "rgba(146,202,209, 0.2)",
+    "rgba(121,204,179, 0.2)",
+    "rgba(134,134,134, 0.2)",
+    "rgba(55,189,121, 0.2)",
+  ];
+  const borderColors = [
+    "rgb(255, 99, 132)",
+    "rgb(255, 159, 64)",
+    "rgb(255, 205, 86)",
+    "rgb(75, 192, 192)",
+    "rgb(54, 162, 235)",
+    "rgb(153, 102, 255)",
+    "rgb(201, 203, 207)",
+    "rgba(233,114,77)",
+    "rgba(214,215,39)",
+    "rgba(146,202,209)",
+    "rgba(121,204,179)",
+    "rgba(134,134,134)",
+    "rgba(55,189,121)",
+  ];
+
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          data: yValues,
+          backgroundColor: barColors,
+          borderColor: borderColors,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: "Order Details",
+      },
+    },
+  });
+}
+// For whishlist
 const wishlistProduct = document.querySelectorAll(".wishlistProduct");
 wishlistProduct.forEach((wishproduct) => {
   wishproduct.addEventListener("click", () => {

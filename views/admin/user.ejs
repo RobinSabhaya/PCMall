@@ -1,0 +1,94 @@
+<div id="Container">
+    <div id="Loader">
+
+    </div>
+</div>
+<section id="Body">
+    <h1 class="m-5 text-black font-bold text-2xl">
+        User Details
+    </h1>
+    <div class="h-fit w-full flex items-center flex-col my-10  overflow-x-auto ">
+        <table class="table-auto border-collapse border border-slate-300 w-10/12 ">
+            <thead>
+                <tr align="left">
+                    <th class="border border-slate-300 p-2">Id</th>
+                    <th class="border border-slate-300 p-2">Name</th>
+                    <th class="border border-slate-300 p-2">Email</th>
+                    <th class="border border-slate-300 p-2">Password</th>
+                    <th class="border border-slate-300 p-2">Role</th>
+                    <th class="border border-slate-300 p-2">CreatedAt</th>
+                    <th class="border border-slate-300 p-2">UpdatedAt</th>
+                    <th class="border border-slate-300 p-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% userData.forEach(user=>{
+                    %>
+                    <tr align="left">
+                        <td class="border border-slate-300 p-3"><a href="#""
+                                class=" text-red-500">
+                                <%= user._id %>
+                            </a></td>
+                        <td class="border border-slate-300 p-3">
+                            <%= user.name%>
+                        </td>
+                        <td class="border border-slate-300 p-3">
+                            <%= user.email%>
+                        </td>
+                        <td class="border border-slate-300 p-3">
+                            <%= user.password%>
+                        </td>
+                        <td class="border border-slate-300 p-3">
+                            <%= user.role%>
+                        </td>
+                        <td class="border border-slate-300 p-3">
+                            <%= dayjs(user.createdAt).format("DD/MM/YYYY hh:mm A") %>
+                        </td>
+                        <td class="border border-slate-300 p-3">
+                            <%= dayjs(user.updatedAt).format("DD/MM/YYYY hh:mm A") %>
+                        </td>
+                        <td class="border border-slate-300 p-3 flex gap-3">
+                            <a href="/admin/user/<%= user._id %>">
+                                <button class="bg-green-700 text-white text-sm px-5 rounded-md py-3 mt-2">
+                                    Edit
+                                </button>
+                            </a>
+                            <button class="bg-red-700 text-white text-sm px-5 py-3 rounded-md  mt-2 delBtns" id="delBtn"
+                                data-delid="<%= user._id %>">Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <% })%>
+            </tbody>
+        </table>
+    </div>
+</section>
+<script>
+    const delBtns = document.querySelectorAll('.delBtns');
+    delBtns.forEach((delBtn) => {
+        delBtn.addEventListener('click', () => {
+            const notyf = new Notyf({
+                duration: 2000,
+                position: {
+                    x: "right",
+                    y: "top",
+                },
+                ripple: true,
+            });
+            const delId = delBtn.dataset.delid.trim();
+            const URL = window.location.href;
+            fetch(`${URL}/${delId}`, {
+                method: "DELETE",
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            }).then((res) => {
+                return res.json();
+            }).then((resData) => {
+                console.log(resData);
+                notyf.success(resData.message)
+                location.reload();
+            }).catch(err => {
+                notyf.error(err);
+            });
+        })
+    })
+</script>

@@ -13,7 +13,13 @@ const loginController = () => {
       if (loginData) {
         const hash = await bcrypt.compare(Lpassword, loginData.password);
         if (Lemail === loginData.email && hash === true) {
-          req.session.user = { _id: loginData._id, user: loginData.name };
+          req.session.user = {
+            _id: loginData._id,
+            name: loginData.name,
+            role: loginData.role,
+          };
+          const accessToken = jwt.sign(req.session.user, SECRET_KEY);
+          req.session.user.accessToken = accessToken;
           return res.status(301).redirect("/");
         } else {
           req.flash("error", "Invalid email and password");

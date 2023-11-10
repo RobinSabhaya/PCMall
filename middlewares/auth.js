@@ -1,11 +1,34 @@
-const registerModel = require('./../db/models/registerSchema');
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.SECRET_KEY;
-const auth = async (req, res, next) => {
-  // const {_id,user} = req.user;
-  // const jwtData = await jwt.verify({_id,user},SECRET_KEY);
-  // console.log(jwtData)
-  next()
+exports.auth = async (req, res, next) => {
+  if (req.session.user) {
+    const { accessToken } = req.session.user;
+    if (accessToken) {
+      const { _id, role } = jwt.verify(accessToken, SECRET_KEY);
+      req.user = { _id, role };
+      next();
+    } else {
+      req.flash("error", "Login Required");
+      return res.redirect("/");
+    }
+  } else {
+    return res.redirect("/login");
+  }
 };
 
-module.exports = auth;
+exports.isCustomer = async (req, res, next) => {
+  if (req.user.role === "customer") {
+    next();
+  } else {
+    req.flash("error", "Login Required");
+    return res.redirect("/");
+  }
+};
+exports.isAdmin = async (req, res, next) => {
+  if (req.user.role === "admin") {
+    next();
+  } else {
+    req.flash("error", "Login Required");
+    return res.redirect("/");
+  }
+};

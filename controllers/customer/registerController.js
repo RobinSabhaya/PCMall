@@ -11,22 +11,21 @@ const registerController = () => {
         const registerData = await registerModel.exists({ email: email });
         if (registerData) {
           req.flash("credentials", "Email is already exist!!");
-          res.redirect("/register");
-        } else {
-          res.redirect("/register");
-        }
-        if (cpassword === password) {
-          const hashPassword = await bcrypt.hash(password, 10);
-          const registerData = new registerModel({
-            name: name,
-            email: email,
-            password: hashPassword,
-          });
-          await registerData.save();
-          return res.status(302).redirect("/login");
-        } else {
-          req.flash("credentials", "Invalid password");
           return res.redirect("/register");
+        } else {
+          if (cpassword === password) {
+            const hashPassword = await bcrypt.hash(password, 10);
+            const registerData = new registerModel({
+              name: name,
+              email: email,
+              password: hashPassword,
+            });
+            await registerData.save();
+            return res.status(302).redirect("/login");
+          } else {
+            req.flash("credentials", "Invalid password");
+            return res.redirect("/register");
+          }
         }
       } catch (err) {
         return res.json({

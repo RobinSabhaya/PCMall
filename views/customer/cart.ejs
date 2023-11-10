@@ -3,7 +3,7 @@
     <% cartData.forEach((product)=>{%>
       <div class="cartBox flex justify-between items-center flex-row flex-wrap w-3/4 h-fit p-6 rounded-lg">
         <div>
-          <img src="<%= product.item.link %>" alt="" height="100px" width="100px" />
+          <img src="http://localhost:3000/uploads/<%=product.item.img[0] %>" alt="" height="100px" width="100px" />
         </div>
         <div class="flex flex-wrap w-1/2">
           <%= product.item.name %>

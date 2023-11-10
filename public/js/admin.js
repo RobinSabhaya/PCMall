@@ -1,5 +1,5 @@
 import axios from "https://cdn.jsdelivr.net/npm/axios@1.3.5/+esm";
-import moment from "https://cdn.jsdelivr.net/npm/@esm-bundle/moment@2.29.4/+esm";
+import dayjs from "https://cdn.jsdelivr.net/npm/dayjs@1.11.10/+esm";
 export function initAdmin() {
   var tBody = document.getElementById("tBody");
   let orders;
@@ -62,7 +62,7 @@ export function initAdmin() {
           </select>
            </form>
            </td>
-           <td class="border border-slate-300 p-2">${moment(
+           <td class="border border-slate-300 p-2">${dayjs(
              ele.createdAt
            ).format("hh : mm A")}</td>
            </tr>
