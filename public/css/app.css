@@ -671,7 +671,7 @@ form {
   flex-direction: row;
   flex-wrap: wrap;
   background-color: whitesmoke;
-  width: 100vw;
+  width: 100%;
 }
 .Privacy,
 .Return,

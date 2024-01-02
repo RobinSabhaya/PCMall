@@ -111,6 +111,17 @@ try {
   console.log(err);
 }
 
+// For search product Logic
+const searchProduct = document.getElementById("Search");
+if (searchProduct) {
+  searchProduct.addEventListener("change", (e) => {
+    const searchQuery = e.target.value;
+    axios.get(`/search/?${searchQuery}`).then((res) => {
+      console.log(res);
+    });
+  });
+}
+
 // For dashboard charts
 const hiddenIp = document.getElementById("hiddenInp");
 if (hiddenIp) {

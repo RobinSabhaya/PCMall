@@ -1,4 +1,6 @@
 const bcrypt = require("bcryptjs");
+const nodeMailer = require("../../config/nodeMailer");
+const mailTemplate = require("../../config/mailTemplate");
 const registerModel = require("../../db/models/registerSchema");
 const registerController = () => {
   return {
@@ -21,6 +23,13 @@ const registerController = () => {
               password: hashPassword,
             });
             await registerData.save();
+            const data = {
+              name: name,
+              email: email,
+            };
+            nodeMailer(email, mailTemplate(data)).catch((err) => {
+              return res.status(302).redirect("/register");
+            });
             return res.status(302).redirect("/login");
           } else {
             req.flash("credentials", "Invalid password");

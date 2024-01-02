@@ -9,6 +9,7 @@ const policyRoute = require("./policy_route");
 const loginRoute = require("./login_route");
 const registerRoute = require("./register_route");
 const adminRoute = require("./admin_route");
+const passportRoute = require("./passport_route");
 
 route.use("/", homeRoute);
 route.use("/", productRoute);
@@ -18,5 +19,6 @@ route.use("/", policyRoute);
 route.use("/", loginRoute);
 route.use("/", registerRoute);
 route.use("/", adminRoute);
+route.use("/", passportRoute);
 
 module.exports = route;

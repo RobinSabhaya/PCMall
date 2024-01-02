@@ -1,4 +1,5 @@
 const wishlistModel = require("../../db/models/wishlistSchema");
+const BASE_URL = process.env.BASE_URL;
 const wishlistController = () => {
   return {
     async postWishlist(req, res) {
@@ -25,7 +26,8 @@ const wishlistController = () => {
       const { id } = req.params;
       const wishlistData = await wishlistModel.find({ customerId: id });
       return res.status(200).render("wishlist", {
-        wishlistData: wishlistData,
+        wishlistData,
+        BASE_URL,
       });
     },
     async deleteWishlist(req, res) {

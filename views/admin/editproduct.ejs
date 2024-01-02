@@ -71,7 +71,7 @@
                                 <% if(productData){%>
                                     <% productData.img.forEach(img=>{%>
                                         <div data-product="<%= productData.img %>" class="img_bx">
-                                            <img src="http://localhost:3000/uploads/<%= img%>" alt="img" height="120px"
+                                            <img src="<%= BASE_URL %>/uploads/<%= img%>" alt="img" height="120px"
                                                 width="120px">
                                         </div>
                                         <%}) %>

@@ -18,7 +18,7 @@ const orderController = () => {
       const { phone, address, token, paymentType } = req.body;
       const orderData = new orderModel({
         customerId: req?.session?.user?._id,
-        items: req.session.cart.items,
+        items: req?.session?.cart?.items,
         cart: req.session.cart,
         phone,
         address,

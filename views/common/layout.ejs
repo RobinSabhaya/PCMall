@@ -43,37 +43,35 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
       </div>
       <div class="Head_Cont_Right">
         <div class="Head_Item3"><a href="/">Home</a></div>
-        <% if(session.user){%>
+        <% if(session.user || user){%>
           <div class="Head_Item3">
             <form action="/logout" method="post" id="form">
               <a onclick="logOut()" class="cursor-pointer">Logout</a>
             </form>
           </div>
+          <div class="flex w-full">
+            <div class="font-bold flex gap-2 justify-center items-center">
+              <%if(session?.user){%>
+                <i class="fa-solid fa-circle-user"></i>
+                <%}%>
+                  <a href="/user/<%= session?.user?._id %>" style="color: red;">
+                    <%= session?.user?.name%>
+                  </a>
+            </div>
+            <div class="flex w-full gap-3">
+              <%if(user){%>
+                <img src="<%= user?.picture %>" height="30px" width="30px" style="border-radius: 50%" alt="profile" />
+                <%}%>
+                  <div class="text-red-500 font-bold">
+                    <%= user?.displayName %>
+                  </div>
+            </div>
+          </div>
           <%}else{%>
             <div class="Head_Item3"><a href="/login">Login</a></div>
             <div class="Head_Item3"><a href="/register">Registration</a></div>
             <%}%>
-              <% if(session.user) {%>
-                <div class="flex w-full">
-                  <div class="font-bold flex gap-2 justify-center items-center">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <a href="/user/<%= session.user._id %>" style="color: red;">
-                      <%= session.user.name%>
-                    </a>
-                  </div>
-                </div>
-                <%} %>
-                  <% if(user) {%>
-                    <div class="flex w-full gap-3">
-                      <img src="<%= user.picture %>" height="30px" width="30px" style="border-radius: 50%"
-                        alt="profile" />
-                      <div class="text-red-500 font-bold">
-                        <%= user.displayName %>
-                      </div>
-                    </div>
-                    <%} %>
       </div>
-    </div>
   </header>
 
   <!-- Navbar -->
@@ -89,12 +87,12 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
       </div>
       <div class="Navbar_Middle">
         <div class="Search">
-          <input type="search" name="Search" id="Search" placeholder="I am shopping for..." />
+          <input type="search" name="search" id="Search" placeholder="I am shopping for..." />
         </div>
       </div>
       <div class="Navbar_Right">
         <ul>
-          <%if(session?.user?.role==="customer" ){%>
+          <%if(session?.user?.role==="customer" || session.passport ){%>
             <a href="/<%= session?.user?.role %>/order">
               <li><i class="fa-solid fa-code-compare"></i> Order</li>
             </a>
@@ -217,7 +215,6 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
         https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js
         "></script>
     <script src="/index.js"></script>
-
 </body>
 
 </html>

@@ -20,6 +20,7 @@ const loginController = () => {
           };
           const accessToken = jwt.sign(req.session.user, SECRET_KEY);
           req.session.user.accessToken = accessToken;
+
           return res.status(301).redirect("/");
         } else {
           req.flash("error", "Invalid email and password");
@@ -32,6 +33,10 @@ const loginController = () => {
     },
     async postLogout(req, res) {
       try {
+        if (req.user) {
+          delete req.session.passport;
+          return res.redirect("/login");
+        }
         if (req.session.user) {
           delete req.session.user;
           return res.redirect("/login");

@@ -57,19 +57,6 @@ app.set("views", [
 app.set("view engine", "ejs");
 app.use(route);
 
-route.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ["email", "profile"],
-  })
-);
-app.get(
-  "/redirect",
-  passport.authenticate("google", {
-    successRedirect: "/",
-  })
-);
-
 //Error handling Middleware
 route.use((req, res) => {
   return res.render("Error_Page");

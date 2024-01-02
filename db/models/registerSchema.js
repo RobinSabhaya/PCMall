@@ -14,6 +14,9 @@ const registerSchema = new mongoose.Schema(
     password: {
       type: String,
     },
+    profile: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

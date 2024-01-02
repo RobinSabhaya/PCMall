@@ -30,22 +30,27 @@ const userController = () => {
       const { id } = req.params;
       const { name, email, password } = req.body;
       try {
-        if (password) {
-          const hashPassword = await bcrypt.hash(password, 10);
+        await registerModel.updateOne(
+          { _id: id },
+          {
+            name,
+            email,
+          }
+        );
+        if (req.file) {
           await registerModel.updateOne(
             { _id: id },
             {
-              name,
-              email,
-              password: hashPassword,
+              profile: req.file.filename,
             }
           );
-          if (req.user.role === "admin") {
-            return res.status(302).redirect("/user");
-          } else {
-            return res.status(302).redirect("/");
-          }
         }
+        if (req.user.role === "admin") {
+          return res.status(302).redirect("/user");
+        } else {
+          return res.status(302).redirect("/");
+        }
+        // }
       } catch (err) {
         return res.json({
           status: 400,

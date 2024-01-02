@@ -15,7 +15,7 @@ const invoiceController = () => {
       const page = await browser.newPage();
       await page.emulateMediaType("screen");
       const ejsData = fs.readFileSync(
-        path.resolve(__dirname, "../../views/invoice.ejs"),
+        path.resolve(__dirname, "../../views/customer/invoice.ejs"),
         "utf8"
       );
       const html = ejs.render(ejsData, {

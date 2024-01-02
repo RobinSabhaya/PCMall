@@ -1,4 +1,5 @@
 const passport = require("passport");
+const registerModel = require("../db/models/registerSchema");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 
 passport.use(
@@ -15,8 +16,21 @@ passport.use(
   )
 );
 
-passport.serializeUser((user, done) => {
-  done(null, user);
+passport.serializeUser(async (user, done) => {
+  try {
+    done(null, user);
+    const userExist = await registerModel.exists({ email: user.email });
+    if (!userExist) {
+      const userData = new registerModel({
+        role: "customer",
+        email: user.email,
+        name: user.displayName,
+      });
+      await userData.save();
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 passport.deserializeUser((user, done) => {

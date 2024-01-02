@@ -38,13 +38,13 @@
                     <%= orderData?.customerId?._id %>
                 </h3>
                 <h3 class="invoiceHead4">
-                    <%= moment(orderData.createdAt).format("DD/MM/YYYY") %>
+                    <%= dayjs(orderData.createdAt).format("DD/MM/YYYY") %>
                 </h3>
                 <h3 class="invoiceHead4">
-                    <%= moment(orderData.createdAt).format("DD/MM/YYYY") %>
+                    <%= dayjs(orderData.createdAt).format("DD/MM/YYYY") %>
                 </h3>
                 <h3 class="invoiceHead4">
-                    <%= moment(orderData.updatedAt).format("DD/MM/YYYY") %>
+                    <%= dayjs(orderData.updatedAt).format("DD/MM/YYYY") %>
                 </h3>
             </div>
         </div>
