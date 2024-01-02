@@ -35,10 +35,10 @@ const orderController = () => {
             })
             .then(async (customer) => {
               stripe.paymentIntents.create({
-                amount: req.session.cart.totalPrice * 100,
+                amount: req?.session?.cart?.totalPrice * 100,
                 customer: customer._id,
                 currency: "INR",
-                description: `orderId : ${req.session.cart.items}`,
+                description: `orderId : ${req?.session?.cart?.items}`,
               });
               orderData.paymentStatus = true;
               await orderData.save();
@@ -48,6 +48,16 @@ const orderController = () => {
             });
         } catch (error) {
           console.log(error.message);
+        }
+      }
+      if (paymentType === "cash") {
+        try {
+          orderData.paymentStatus = true;
+          await orderData.save();
+          delete req.session.cart;
+          return res.status(302).redirect("/customer/order");
+        } catch (err) {
+          return res.status(302).redirect("/customer/order");
         }
       }
     },

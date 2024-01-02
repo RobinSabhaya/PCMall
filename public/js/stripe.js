@@ -5,35 +5,57 @@ export async function stripeIntegration() {
     "pk_test_51MwfAySCJZNefNodu7gQNShrHTd0JpLVguI18ZA8cKAR6jvlkT339fgkezuyGxb6C2m9w0iVu34OzyKNo1MNDas500qMy411KA"
   );
   const paymentType = document.getElementById("paymentType");
+  const paymentForm = document.getElementById("paymentForm");
+  let phone;
+  let address;
   let card = null;
+  let formObj = {};
   function mountWidget() {
     const elements = stripe.elements();
-    let card = elements.create("card", { style: {}, hidePostalCode: true });
+    card = elements.create("card", { style: {}, hidePostalCode: true });
     card.mount("#card");
-    const paymentForm = document.getElementById("paymentForm");
     if (paymentForm) {
       paymentForm.addEventListener("submit", (e) => {
         e.preventDefault();
         stripe.createToken(card).then((res) => {
-          const formObj = {};
-          formObj.phone = document.getElementById("phone").value;
-          formObj.address = document.getElementById("address").value;
+          phone = document.getElementById("phone").value;
+          address = document.getElementById("address").value;
+          formObj.phone = phone;
+          formObj.address = address;
           formObj.token = res.token.id;
           formObj.paymentType = "card";
           axios.post("/customer/order", formObj).then((res) => {
-            location.href = '/customer/order';
+            location.href = "/customer/order";
           });
         });
       });
     }
   }
-if(paymentType){
-  paymentType.addEventListener("change", (e) => {
-    if ("card" === e.target.value) {
-      mountWidget();
-    } else {
-      card.destroy();
+
+  function codHandler() {
+    if (paymentForm) {
+      paymentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        phone = document.getElementById("phone").value;
+        address = document.getElementById("address").value;
+        formObj.phone = phone;
+        formObj.address = address;
+        formObj.paymentType = "cash";
+        axios.post("/customer/order", formObj).then((res) => {
+          location.href = "/customer/order";
+        });
+      });
     }
-  });
-}
+  }
+  if (paymentType) {
+    paymentType.addEventListener("change", (e) => {
+      if ("card" === e.target.value) {
+        mountWidget();
+      }
+      if ("cash" === e.target.value) {
+        codHandler();
+        card.destroy();
+      }
+    });
+  }
 }
