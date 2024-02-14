@@ -12,7 +12,7 @@ const loginController = () => {
       const loginData = await registerModel.findOne({ email: Lemail });
       if (loginData) {
         const hash = await bcrypt.compare(Lpassword, loginData.password);
-        if (Lemail === loginData.email && hash === true) {
+        if (Lemail === loginData.email && hash) {
           req.session.user = {
             _id: loginData._id,
             name: loginData.name,
@@ -20,8 +20,7 @@ const loginController = () => {
           };
           const accessToken = jwt.sign(req.session.user, SECRET_KEY);
           req.session.user.accessToken = accessToken;
-
-          return res.status(301).redirect("/");
+          return res.status(302).redirect("/");
         } else {
           req.flash("error", "Invalid email and password");
           return res.redirect("/login");

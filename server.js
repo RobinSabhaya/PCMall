@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const expressLayout = require("express-ejs-layouts");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -8,6 +9,9 @@ const flash = require("express-flash");
 const Emmiter = require("events");
 const passport = require("passport");
 const favicon = require("serve-favicon");
+const compression = require("compression");
+// const helmet = require("helmet");
+// const https = require("node:https");
 const PORT = process.env.PORT || 8000;
 require("./db/conn");
 require("./config/passport");
@@ -46,6 +50,7 @@ app.use(express.static(path.join(__dirname, "/public/css")));
 app.use(express.static(path.join(__dirname, "/public/js")));
 app.use(express.static(path.join(__dirname, "/public/image")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(compression({ level: 6 }));
 app.set("views", [
   "views",
   "views/admin",
@@ -56,11 +61,18 @@ app.set("views", [
 ]);
 app.set("view engine", "ejs");
 app.use(route);
-
 //Error handling Middleware
 route.use((req, res) => {
   return res.render("Error_Page");
 });
+
+// Secure connection with SSL cer
+// const options = {
+//   key: fs.readFileSync(path.join(__dirname, "./ecdsa.key")),
+//   cert: fs.readFileSync(path.join(__dirname, "./ecdsa.crt")),
+// };
+// https.createServer(options, app);
+
 //App Listen Specific Stuffs
 const server = app.listen(PORT, () => {
   console.log(`Express App Is Now Running... on http://127.0.0.1:${PORT}/`);

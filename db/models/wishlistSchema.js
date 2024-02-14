@@ -6,8 +6,12 @@ const wishlistSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "customer",
     },
-    wishlist: {
-      type: Object,
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+    isWhishlist: {
+      type: Boolean,
     },
   },
   {

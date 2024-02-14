@@ -9,7 +9,7 @@ route.post(
   [[auth, isAdmin], upload.array("file", 5)],
   productController().postProduct
 );
-route.get("/product", [auth, isAdmin], productController().getProduct);
+route.get("/product", [auth, isCustomer], productController().getProduct);
 route.get("/addproduct", [auth, isAdmin], productController().addProduct);
 route.get(
   "/product/:id",

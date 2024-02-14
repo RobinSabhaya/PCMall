@@ -3,32 +3,33 @@ import dayjs from "https://cdn.jsdelivr.net/npm/dayjs@1.11.10/+esm";
 export function initAdmin() {
   var tBody = document.getElementById("tBody");
   let orders;
-  axios
-    .get("/admin/order", {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    })
-    .then((res) => {
-      orders = res.data;
-      if (tBody) {
-        tBody.innerHTML = generateOrder(orders);
-      }
-      function renderItem(orders) {
-        const orderData = Object.values(orders);
-        return orderData.map((ele) => {
-          return `<div> ${ele.item.name} - ${ele.qty}pcs </div>
+  if (tBody) {
+    axios
+      .get("/admin/order", {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+      .then((res) => {
+        orders = res.data;
+        if (tBody) {
+          tBody.innerHTML = generateOrder(orders);
+        }
+        function renderItem(orders) {
+          const orderData = Object.values(orders);
+          return orderData.map((ele) => {
+            return `<div> ${ele.item.name} - ${ele.qty}pcs </div>
         <div class='m-3'>
         ₹${ele.qty * ele.item.price}
         </div>
         `;
-        });
-      }
+          });
+        }
 
-      function generateOrder(order) {
-        return order
-          .map((ele) => {
-            return `
+        function generateOrder(order) {
+          return order
+            .map((ele) => {
+              return `
            <tr align="left">
            <td class="border border-slate-300 p-2 w-1/3">
            <span class="text-red-500">${ele._id}</span>
@@ -67,8 +68,9 @@ export function initAdmin() {
            ).format("hh : mm A")}</td>
            </tr>
             `;
-          })
-          .join("");
-      }
-    });
+            })
+            .join("");
+        }
+      });
+  }
 }

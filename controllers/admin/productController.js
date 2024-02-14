@@ -1,47 +1,90 @@
 const path = require("path");
 const BASE_URL = process.env.BASE_URL;
 const productModel = require("../../db/models/productSchema");
+const categoryModel = require("../../db/models/categorySchema");
 const fs = require("fs");
 const productController = () => {
   return {
     async postProduct(req, res) {
-      if (req.files) {
-        const { name, brand, price, discount, colors } = req.body;
-        const imgs = [];
-        req.files.forEach((img) => {
-          imgs.push(img.filename);
+      try {
+        if (req.files) {
+          const { name, brand, price, discount, colors, categoryId } = req.body;
+          const imgs = [];
+          req.files.forEach((img) => {
+            imgs.push(img.filename);
+          });
+          const productData = new productModel({
+            name,
+            brand,
+            price,
+            discount,
+            img: imgs,
+            colors: [colors],
+            categoryId,
+          });
+          await productData.save();
+          return res.redirect("/product");
+        }
+      } catch (err) {
+        return res.status(400).json({
+          status: "error",
+          message: err.message,
         });
-        const productData = new productModel({
-          name,
-          brand,
-          price,
-          discount,
-          img: imgs,
-          colors: [colors],
-        });
-        await productData.save();
-        return res.redirect("/product");
       }
     },
     async singleProduct(req, res) {
       const { id } = req.params;
       const productData = await productModel.findOne({ _id: id });
-      return res
-        .status(200)
-        .render("single_product", { productData, BASE_URL });
+      if (req.xhr) {
+        return res.status(200).json({
+          status: 200,
+          productData,
+        });
+      } else {
+        return res
+          .status(200)
+          .render("single_product", { productData, BASE_URL });
+      }
     },
     async getProduct(req, res) {
-      const productData = await productModel.find();
-      return res.render("allproduct", { productData, BASE_URL });
+      try {
+        let productData = await productModel
+          .find()
+          .select("-createdAt -updatedAt -__v");
+        const { category } = req.query;
+        if (req.query) {
+          productData = await productModel
+            .find({ categoryId: category })
+            .select("-createdAt -updatedAt -__v");
+          return res.json({
+            status: "success",
+            productData,
+            url: BASE_URL,
+          });
+        } else {
+          return res.render("allproduct", { productData, BASE_URL });
+        }
+      } catch (err) {
+        return res.json({
+          status: 400,
+          message: err.message,
+        });
+      }
     },
     async addProduct(req, res) {
-      return res.render("product");
+      const categoryData = await categoryModel.find();
+      return res.render("product", { categoryData });
     },
     async updateGetProduct(req, res) {
       try {
         const { id } = req.params;
         const productData = await productModel.findOne({ _id: id });
-        return res.render("editproduct", { productData, BASE_URL });
+        const categoryData = await categoryModel.find();
+        return res.render("editproduct", {
+          productData,
+          BASE_URL,
+          categoryData,
+        });
       } catch (err) {
         return res.json({
           status: 400,
@@ -52,6 +95,7 @@ const productController = () => {
     async updateProduct(req, res) {
       try {
         const { id } = req.params;
+        console.log(req.body);
         if (req.file) {
           await productModel.updateOne({ _id: id }, req.body);
           const productData = await productModel.findOne({ _id: id });

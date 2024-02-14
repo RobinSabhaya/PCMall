@@ -62,11 +62,30 @@
                             </label>
                         </div>
                         <div>
-                            <label for="colors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="colors" class="block mb-3 text-sm font-medium text-gray-900 dark:text-white">
                                 Colors </label>
                             <input type="text" id="colors" name="colors"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required value="<%= productData.colors %>">
+
+
+
+                            <label for="category"
+                                class="block mt-7 mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                                a
+                                Category</label>
+                            <select id="category" name="categoryId"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <% if(categoryData.length> 0) {%>
+                                    <% categoryData.forEach((category)=>{
+                                        %>
+                                        <option value="<%= category._id %>">
+                                            <%= category.categoryName%>
+                                        </option>
+                                        <% }) %>
+                                            <%} %>
+                            </select>
+
                             <div class="flex justify-center items-center flex-row flex-wrap gap-3 mt-6">
                                 <% if(productData){%>
                                     <% productData.img.forEach(img=>{%>
