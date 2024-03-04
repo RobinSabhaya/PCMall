@@ -3,6 +3,7 @@ const BASE_URL = process.env.BASE_URL;
 const productModel = require("../../db/models/productSchema");
 const categoryModel = require("../../db/models/categorySchema");
 const fs = require("fs");
+const { default: mongoose } = require("mongoose");
 const productController = () => {
   return {
     async postProduct(req, res) {
@@ -48,17 +49,40 @@ const productController = () => {
     },
     async getProduct(req, res) {
       try {
-        let productData = await productModel
+        const { category, page, limit } = req.query;
+        const filter = {};
+        const pagination = {
+          page: page || 1,
+          limit: limit || 10,
+        };
+        let productData;
+        productData = await productModel
           .find()
           .select("-createdAt -updatedAt -__v");
-        const { category } = req.query;
-        if (req.query) {
+        if (category) {
+          filter.categoryId = category;
           productData = await productModel
-            .find({ categoryId: category })
+            .find(filter)
             .select("-createdAt -updatedAt -__v");
           return res.json({
             status: "success",
             productData,
+            totalResult: productData.length,
+            url: BASE_URL,
+          });
+        }
+        if (req.query) {
+          productData = await productModel
+            .find()
+            .select("-createdAt -updatedAt -__v")
+            .skip((pagination.page - 1) * pagination.limit)
+            .limit(pagination.limit);
+          return res.json({
+            status: "success",
+            productData,
+            totalResult: productData.length,
+            page: pagination.page,
+            limit: pagination.limit,
             url: BASE_URL,
           });
         } else {

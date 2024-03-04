@@ -23,104 +23,108 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
 </head>
 
 <body onload="Load()">
-  <header>
-    <div class="Header_Container" id="Header_Container">
-      <div class="Head_Cont_Left">
-        <div class="Head_Item1">
-          <select class="Select">
-            <option value="English">English</option>
-            <option value="Hindi">Hindi</option>
-          </select>
-        </div>
-        <div class="Head_Item2">
-          <select class="Select">
-            <option value="Ruppe">
-              Rupee <i class="fa-solid fa-indian-rupee-sign"></i>
-            </option>
-            <option value="Dollar">Dollar</option>
-          </select>
-        </div>
-      </div>
-      <div class="Head_Cont_Right">
-        <div class="Head_Item3"><a href="/">Home</a></div>
-        <% if(session.user || user){%>
-          <div class="Head_Item3">
-            <form action="/logout" method="post" id="form">
-              <a onclick="logOut()" class="cursor-pointer">Logout</a>
-            </form>
+  <div class="flex flex-col responsive-navbar">
+    <header>
+      <div class="Header_Container" id="Header_Container">
+        <div class="Head_Cont_Left">
+          <div class="Head_Item1">
+            <select class="Select">
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
           </div>
-          <div class="flex w-full">
-            <div class="font-bold flex gap-2 justify-center items-center">
-              <%if(session?.user){%>
-                <i class="fa-solid fa-circle-user"></i>
-                <%}%>
-                  <a href="/user/<%= session?.user?._id %>" style="color: red;">
-                    <%= session?.user?.name%>
-                  </a>
-            </div>
-            <div class="flex w-full gap-3">
-              <%if(user){%>
-                <img src="<%= user?.picture %>" height="30px" width="30px" style="border-radius: 50%" alt="profile" />
-                <%}%>
-                  <div class="text-red-500 font-bold">
-                    <%= user?.displayName %>
-                  </div>
-            </div>
+          <div class="Head_Item2">
+            <select class="Select">
+              <option value="Ruppe">
+                Rupee <i class="fa-solid fa-indian-rupee-sign"></i>
+              </option>
+              <option value="Dollar">Dollar</option>
+            </select>
           </div>
-          <%}else{%>
-            <div class="Head_Item3"><a href="/login">Login</a></div>
-            <div class="Head_Item3"><a href="/register">Registration</a></div>
-            <%}%>
-      </div>
-  </header>
+        </div>
+        <div class="Head_Cont_Right">
+          <div class="Head_Item3"><a href="/">Home</a></div>
+          <% if(session.user || user){%>
+            <div class="Head_Item3">
+              <form action="/logout" method="post" id="form">
+                <a onclick="logOut()" class="cursor-pointer">Logout</a>
+              </form>
+            </div>
+            <div class="flex w-full">
+              <div class="font-bold flex gap-2 justify-center items-center">
+                <%if(session?.user){%>
+                  <i class="fa-solid fa-circle-user"></i>
+                  <%}%>
+                    <a href="/user/<%= session?.user?._id %>" style="color: red;">
+                      <%= session?.user?.name%>
+                    </a>
+              </div>
+              <div class="flex w-full gap-3">
+                <%if(user){%>
+                  <img src="<%= user?.picture %>" height="30px" width="30px" style="border-radius: 50%" alt="profile" />
+                  <%}%>
+                    <div class="text-red-500 font-bold">
+                      <%= user?.displayName %>
+                    </div>
+              </div>
+            </div>
+            <%}else{%>
+              <div class="Head_Item3"><a href="/login">Login</a></div>
+              <div class="Head_Item3"><a href="/register">Registration</a></div>
+              <%}%>
+        </div>
+    </header>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="Navbar_Container">
-      <div class="Navbar_Left">
-        <div class="Logo">PC Mall</div>
-        <div id="bar" onclick="toggle()">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-      </div>
-      <div class="Navbar_Middle">
-        <div class="Search flex gap-3 justify-center items-center ">
-          <div>
-            <input type="search" name="search" id="Search" placeholder="I am shopping for..." />
-          </div>
-          <div class="bg-slate-100 pl-4 pr-4 pt-1 pb-1 rounded-xl border-spacing-2">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <!-- Navbar -->
+    <nav>
+      <div class="Navbar_Container">
+        <div class="Navbar_Left">
+          <a href="/">
+            <div class="Logo">PC Mall</div>
+          </a>
+          <div id="bar" onclick="openBtn()">
+            <div class="line" id="line1"></div>
+            <div class="line" id="line2"></div>
+            <div class="line"></div>
           </div>
         </div>
+        <div class="Navbar_Middle">
+          <div class="Search flex gap-3 justify-center items-center ">
+            <div>
+              <input type="search" name="search" id="Search" placeholder="I am shopping for..." />
+            </div>
+            <div class="bg-slate-100 pl-4 pr-4 pt-1 pb-1 rounded-xl border-spacing-2">
+              <i class="fa-solid fa-magnifying-glass" onclick="searchproduct()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="Navbar_Right">
+          <ul>
+            <%if(session?.user?.role==="customer" || session.passport ){%>
+              <a href="/<%= session?.user?.role %>/order">
+                <li><i class="fa-solid fa-code-compare"></i> Order</li>
+              </a>
+              <a href="/<%= session?.user?.role %>/wishlist/<%= session?.user?._id %>">
+                <li><i class="fa-solid fa-heart"></i> Wishlist</li>
+              </a>
+              <a href="/cart">
+                <li>
+                  <span class="text-center text-xl" id="cart">
+                    <%= session.cart ? session.cart.totalQty : "" %>
+                  </span><i class="fa-solid fa-cart-shopping"></i> Cart
+                </li>
+              </a>
+              <%}%>
+                <%if (session?.user?.role==="admin" ){%>
+                  <a href="/<%= session?.user?.role %>/order">
+                    <li><i class="fa-solid fa-code-compare"></i> Order</li>
+                  </a>
+                  <%}%>
+          </ul>
+        </div>
       </div>
-      <div class="Navbar_Right">
-        <ul>
-          <%if(session?.user?.role==="customer" || session.passport ){%>
-            <a href="/<%= session?.user?.role %>/order">
-              <li><i class="fa-solid fa-code-compare"></i> Order</li>
-            </a>
-            <a href="/<%= session?.user?.role %>/wishlist/<%= session?.user?._id %>">
-              <li><i class="fa-solid fa-heart"></i> Wishlist</li>
-            </a>
-            <a href="/cart">
-              <li>
-                <span class="text-center text-xl" id="cart">
-                  <%= session.cart ? session.cart.totalQty : "" %>
-                </span><i class="fa-solid fa-cart-shopping"></i> Cart
-              </li>
-            </a>
-            <%}%>
-              <%if (session?.user?.role==="admin" ){%>
-                <a href="/<%= session?.user?.role %>/order">
-                  <li><i class="fa-solid fa-code-compare"></i> Order</li>
-                </a>
-                <%}%>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
   <%- body %>
     <!-- Footer section  -->
     <section class="Banner_Container" id="Banner_Container">
@@ -149,14 +153,7 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
             PC mall is a Multi vendor system is such a platform to build a
             border less marketplace
           </div>
-          <div class="Cnt1_Head2">
-            <input type="email" name="Email" id="Email" placeholder="Your Email Address.." />
-            <span>
-              <button id="Btn">Subscribe</button>
-            </span>
-          </div>
         </div>
-
         <div class="Foot_Cont2">
           <div class="Cnt2_Head">Contact Info</div>
           <div class="Cnt2_Head2">
@@ -177,8 +174,7 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
           <div class="Cnt4_Items">
             <div class="Cnt4_Item"><a href="/">Home</a></div>
             <div class="Cnt4_Item"><a href="/login">Login</a></div>
-            <div class="Cnt4_Item"><a href="/Register">Registration</a></div>
-            <div class="Cnt4_Item"><a href="/logout">Logout</a></div>
+            <div class="Cnt4_Item"><a href="/register">Registration</a></div>
             <div class="Cnt4_Item">
               <button id="Btn2">Apply Now</button>
             </div>
@@ -219,7 +215,18 @@ https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.css
     <script src="
         https://cdn.jsdelivr.net/npm/notyf@3.10.0/notyf.min.js
         "></script>
-    <script src="/index.js"></script>
+    <script src="/index.js" type="module"></script>
+    <script>
+      function openBtn() {
+        const Header_Container = document.getElementById("Header_Container");
+        const line1 = document.getElementById("line1");
+        const line2 = document.getElementById("line2");
+        Header_Container.classList.toggle("active");
+        line1.classList.toggle("active");
+        line2.classList.toggle("active");
+      }
+
+    </script>
 </body>
 
 </html>

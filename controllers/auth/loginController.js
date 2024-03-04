@@ -22,11 +22,11 @@ const loginController = () => {
           req.session.user.accessToken = accessToken;
           return res.status(302).redirect("/");
         } else {
-          req.flash("error", "Invalid email and password");
+          req.flash("credentials", "Invalid email and password");
           return res.redirect("/login");
         }
       } else {
-        req.flash("error", "Invalid email and password");
+        req.flash("credentials", "Invalid email and password");
         return res.redirect("/login");
       }
     },

@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
 const expressLayout = require("express-ejs-layouts");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -11,7 +10,6 @@ const passport = require("passport");
 const favicon = require("serve-favicon");
 const compression = require("compression");
 // const helmet = require("helmet");
-// const https = require("node:https");
 const PORT = process.env.PORT || 8000;
 require("./db/conn");
 require("./config/passport");
@@ -66,7 +64,7 @@ route.use((req, res) => {
   return res.render("Error_Page");
 });
 
-// Secure connection with SSL cer
+// Secure connection with SSL certificate
 // const options = {
 //   key: fs.readFileSync(path.join(__dirname, "./ecdsa.key")),
 //   cert: fs.readFileSync(path.join(__dirname, "./ecdsa.crt")),
