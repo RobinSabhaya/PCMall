@@ -14,5 +14,9 @@ route.post(
   loginController().postLogin
 );
 route.post("/logout", loginController().postLogout);
+route.get("/reset-password", loginController().getForgetPassword);
+route.post("/reset-password", loginController().postForgetPassword);
+route.get("/change-password", loginController().getChangePassword);
+route.post("/change-password", loginController().postChangePassword);
 
 module.exports = route;

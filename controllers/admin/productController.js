@@ -2,8 +2,9 @@ const path = require("path");
 const BASE_URL = process.env.BASE_URL;
 const productModel = require("../../db/models/productSchema");
 const categoryModel = require("../../db/models/categorySchema");
+const ratingModel = require("../../db/models/ratingSchema");
 const fs = require("fs");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const productController = () => {
   return {
     async postProduct(req, res) {
@@ -36,15 +37,136 @@ const productController = () => {
     async singleProduct(req, res) {
       const { id } = req.params;
       const productData = await productModel.findOne({ _id: id });
+      const ratingData = await ratingModel.aggregate([
+        {
+          $match: {
+            product: productData._id,
+          },
+        },
+        {
+          $lookup: {
+            from: "registers",
+            localField: "user",
+            foreignField: "_id",
+            as: "user",
+          },
+        },
+        {
+          $unwind: {
+            path: "$user",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $group: {
+            _id: "$product",
+            avg_rating: {
+              $avg: "$rating",
+            },
+            user: {
+              $addToSet: "$user",
+            },
+            rating_count: {
+              $sum: 1,
+            },
+            one_star: {
+              $sum: {
+                $cond: {
+                  if: {
+                    $eq: ["$rating", 1],
+                  },
+                  then: {
+                    $sum: 1,
+                  },
+                  else: 0,
+                },
+              },
+            },
+            two_star: {
+              $sum: {
+                $cond: {
+                  if: {
+                    $eq: ["$rating", 2],
+                  },
+                  then: {
+                    $sum: 1,
+                  },
+                  else: 0,
+                },
+              },
+            },
+            three_star: {
+              $sum: {
+                $cond: {
+                  if: {
+                    $eq: ["$rating", 3],
+                  },
+                  then: {
+                    $sum: 1,
+                  },
+                  else: 0,
+                },
+              },
+            },
+            four_star: {
+              $sum: {
+                $cond: {
+                  if: {
+                    $eq: ["$rating", 4],
+                  },
+                  then: {
+                    $sum: 1,
+                  },
+                  else: 0,
+                },
+              },
+            },
+            five_star: {
+              $sum: {
+                $cond: {
+                  if: {
+                    $eq: ["$rating", 5],
+                  },
+                  then: {
+                    $sum: 1,
+                  },
+                  else: 0,
+                },
+              },
+            },
+          },
+        },
+        {
+          $unwind: {
+            path: "$user",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $project: {
+            user: 1,
+            avg_rating: 1,
+            rating_count: 1,
+            one_star: 1,
+            two_star: 1,
+            three_star: 1,
+            four_star: 1,
+            five_star: 1,
+          },
+        },
+      ]);
       if (req.xhr) {
         return res.status(200).json({
           status: 200,
           productData,
+          ratingData: ratingData[0],
         });
       } else {
-        return res
-          .status(200)
-          .render("single_product", { productData, BASE_URL });
+        return res.status(200).render("single_product", {
+          productData,
+          ratingData: ratingData[0],
+          BASE_URL,
+        });
       }
     },
     async getProduct(req, res) {
@@ -83,6 +205,7 @@ const productController = () => {
             totalResult: productData.length,
             page: pagination.page,
             limit: pagination.limit,
+            total_pages: Math.floor(productData.length / pagination.limit),
             url: BASE_URL,
           });
         } else {

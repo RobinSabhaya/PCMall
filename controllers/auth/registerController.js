@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const nodeMailer = require("../../config/nodeMailer");
 const mailTemplate = require("../../config/mailTemplate");
 const registerModel = require("../../db/models/registerSchema");
+const BASE_URL = process.env.BASE_URL;
 const registerController = () => {
   return {
     getRegister(req, res) {
@@ -27,7 +28,8 @@ const registerController = () => {
               name: name,
               email: email,
             };
-            nodeMailer(email, mailTemplate(data)).catch((err) => {
+            const subject = `Congratulations, you have successfully registered as ${data.name} on ${BASE_URL}`;
+            nodeMailer(email, subject, mailTemplate(data)).catch((err) => {
               return res.status(302).redirect("/register");
             });
             return res.status(302).redirect("/login");

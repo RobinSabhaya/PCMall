@@ -1,6 +1,7 @@
 import axios from "https://cdn.jsdelivr.net/npm/axios@1.3.5/+esm";
 const pagination_counter = document.querySelector(".pagination_counter");
-const allChildren = pagination_counter.children;
+let allChildren = pagination_counter?.children;
+
 const secondLastElement = allChildren[allChildren.length - 2];
 let { page, limit } = JSON.parse(secondLastElement.dataset.pagination);
 const Product_Container1 = document.querySelector(".Product_Container1");

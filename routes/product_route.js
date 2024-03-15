@@ -2,7 +2,8 @@ const express = require("express");
 
 const route = express.Router();
 const productController = require("../controllers/admin/productController");
-const { auth, isAdmin, isCustomer } = require("../middlewares//auth");
+const ratingController = require("../controllers/customer/ratingController");
+const { auth, isAdmin, isCustomer } = require("../middlewares/auth");
 const upload = require("../middlewares/multer");
 route.post(
   "/product",
@@ -23,7 +24,7 @@ route.post(
 );
 route.get(
   "/singleproduct/:id",
-  [auth, isCustomer],
+  // [auth, isCustomer],
   productController().singleProduct
 );
 route.delete(
@@ -31,5 +32,7 @@ route.delete(
   [auth, isAdmin],
   productController().deleteProduct
 );
+
+route.post("/rating/:id", [auth, isCustomer], ratingController().postRating);
 
 module.exports = route;

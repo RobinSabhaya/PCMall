@@ -1,3 +1,5 @@
+const BASE_URL = process.env.BASE_URL;
+const BASE_MAIL = process.env.BASE_MAIL;
 const mailTemplate = (data) => {
   return `
   <body> 
@@ -12,7 +14,7 @@ const mailTemplate = (data) => {
                               <tr> 
                                   <td align="center" style="background-color: red; 
                                           height: 50px;color:white"> 
-                                      <a href="#" style="text-decoration: none;"> 
+                                      <a href="${BASE_URL}" style="text-decoration: none;"> 
                                           <p style="color:white; 
                                                   font-weight:bold; font-size:30px;"> 
                                               PCMall
@@ -46,7 +48,7 @@ const mailTemplate = (data) => {
                           border-radius: 10px;
                           height: fit-content;
                           width: 150px;">
-                           <a href="https://pcmall.onrender.com/login" style="text-decoration: none; color: white;">LOGIN</a>
+                           <a href="${BASE_URL}/login" style="text-decoration: none; color: white;">LOGIN</a>
                           </p>
                   </td> 
               </tr> 
@@ -60,7 +62,7 @@ const mailTemplate = (data) => {
                           <br/> 
                           <p style="font-size: 20px;">
                    Email: <a href="${data.email}" style="color: red">${data.email}</a> </p>              
-                   <p style="font-size: 20px;">Login: <a href="https://pcmall.onrender.com/login"                      style="color: red;">https://pcmall.onrender.com/login</a>              </p>
+                   <p style="font-size: 20px;">Login: <a href="${BASE_URL}/login"  style="color: red;">${BASE_URL}/login</a>              </p>
                       </p> 
                   </td> 
               </tr> 
@@ -73,7 +75,7 @@ const mailTemplate = (data) => {
                               We're here to help!
                           <br>              
                           <p style="font-size:20px">
-                          To talk with one of our email marketing experts, call +91123456789 or email us at <a href="pcmallinfo@gmail.com" style="color: red;">pcmallinfo@gmail.com</a>
+                          To talk with one of our email marketing experts, call +91123456789 or email us at <a href="${BASE_MAIL}" style="color: red;">${BASE_MAIL}</a>
                           </p>
                   </td> 
               </tr> 
@@ -84,19 +86,19 @@ const mailTemplate = (data) => {
                           <tbody style="background-color:whitesmoke;height:50px"> 
                               <tr> 
                               <td>
-                              <a href="https://pcmall.onrender.com/termcondition" style="text-decoration:underline;
+                              <a href="${BASE_URL}/termcondition" style="text-decoration:underline;
                               color: black;font-size:17px;padding:5px;">TERMCONDITION</a>
                           </td>
                           <td>
-                              <a href="https://pcmall.onrender.com/returnpolicy" style="text-decoration:underline;
+                              <a href="${BASE_URL}/returnpolicy" style="text-decoration:underline;
                               color: black;font-size:17px;padding:5px;">RETURNPOLICY</a>
                           </td>
                           <td>
-                              <a href="https://pcmall.onrender.com/supportpolicy" style="text-decoration:underline;
+                              <a href="${BASE_URL}/supportpolicy" style="text-decoration:underline;
                               color: black;font-size:17px;padding:5px;">SUPPORTPOLICY</a>
                           </td>
                           <td>
-                              <a href="https://pcmall.onrender.com/privacypolicy" style="text-decoration:underline;
+                              <a href="${BASE_URL}/privacypolicy" style="text-decoration:underline;
                               color: black;font-size:17px;padding:5px;">PRIVACYPOLICY</a>
                           </td> 
                               </tr>
@@ -106,7 +108,7 @@ const mailTemplate = (data) => {
               </tr> 
               <br />
               <div style="color:white; font-size:16px;text-align:center;background-color:red;height:30px">
-              All rights are reserved by &copy; <a href="https://pcmall.onrender.com/" style="color:white;text-decoration:underline;">PCMall</a>
+              All rights are reserved by &copy; <a href="${BASE_URL}" style="color:white;text-decoration:underline;">PCMall</a>
               </div>  
               </tbody>
               </table>

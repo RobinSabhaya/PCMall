@@ -79,7 +79,7 @@ try {
   const product_like = document.querySelectorAll(".product_like");
   product_like.forEach((product) => {
     product.addEventListener("click", () => {
-      product.classList.toggle("las");
+      product.classList.toggle("filled");
       let wishProduct = JSON.parse(product.dataset.wishproduct);
       const productId = wishProduct._id;
       axios
@@ -113,7 +113,7 @@ try {
             ripple: true,
           });
           notyf.error("Login Required");
-          product.classList.remove("las");
+          product.classList.remove("filled");
         });
     });
   });
@@ -219,7 +219,7 @@ if (category) {
         const product_like = document.querySelectorAll(".product_like");
         product_like.forEach((product) => {
           product.addEventListener("click", () => {
-            product.classList.toggle("las");
+            product.classList.toggle("filled");
             let wishProduct = JSON.parse(`${product.dataset.wishproduct}"}`);
             const productId = wishProduct._id;
             axios
@@ -253,7 +253,7 @@ if (category) {
                   ripple: true,
                 });
                 notyf.error("Login Required");
-                product.classList.remove("las");
+                product.classList.remove("filled");
               });
           });
         });
@@ -355,7 +355,7 @@ paginations.forEach((pagination) => {
         const product_like = document.querySelectorAll(".product_like");
         product_like.forEach((product) => {
           product.addEventListener("click", () => {
-            product.classList.toggle("las");
+            product.classList.toggle("filled");
             let wishProduct = JSON.parse(`${product.dataset.wishproduct}"}`);
             const productId = wishProduct._id;
             axios
@@ -389,7 +389,7 @@ paginations.forEach((pagination) => {
                   ripple: true,
                 });
                 notyf.error("Login Required");
-                product.classList.remove("las");
+                product.classList.remove("outline");
               });
           });
         });

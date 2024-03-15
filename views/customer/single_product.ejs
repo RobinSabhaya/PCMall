@@ -8,34 +8,35 @@
 </head>
 
 <body>
-    <div class="grid grid-cols-2 place-content-center">
-        <div class="flex justify-center items-end flex-col flex-wrap w-auto p-10 mr-3">
+    <div class="grid grid-cols-2 place-content-center product_grid_container">
+        <div class="flex justify-center items-end flex-col flex-wrap w-auto p-10 mr-3 inner_container">
             <img src="<%= BASE_URL %>/uploads/<%= productData.img[0]%>" alt="" height="200px" width="200px"
                 id="productImg">
         </div>
-        <div class="flex justify-start items-start flex-col flex-wrap w-1/2 p-10 ml-5">
-            <div class="mb-3 text-xl ">
+        <div class="flex justify-start items-start flex-col flex-wrap w-1/2  p-10 ml-5 inner_container">
+            <div class="mb-3 text-xl">
                 <%= productData.name %>
             </div>
             <div>
-                <span class="text-red-500 text-xl">
-                    - <%= productData.discount %>%
-                        &nbsp;
-                </span>
-                <del class="text-black text-xl">
-                    ₹ <%= productData.price %>
-                </del>
+                <div class="flex justify-start items-center flex-row inner_container">
+                    <span class="text-red-700 text-xl">
+                        - <%= productData.discount %>%
+                            &nbsp;
+                    </span>
+                    <del class="text-black text-xl">
+                        ₹ <%= productData.price %>
+                    </del>
+                </div>
                 <br>
                 <div class="text-black text-3xl mt-4">
                     <span class="mr-6">₹ <%= productData.price - (((productData.price) * (productData.discount))/100) %>
                     </span>
-                    &nbsp;
                     <button class="bg-red-700 text-white text-sm px-5 py-3 rounded-full mt-2 btn"
                         data-order="<%= JSON.stringify(productData) %>">Add to Cart</button>
                 </div>
                 <div class="text-black mt-10 text-xl ">
                     color : <% productData.colors.forEach(color=>{%>
-                        <span class="pl-4 pr-4 pt-2 ml-3" style="border-radius : 7px; background-color: <%= color %>; ">
+                        <span class="pl-4 pr-4 pt-2 ml-3" style="border-radius : 7px; background-color: <%= color %> ">
                         </span>
                         <span class="m-2">
                             <%= color %>
@@ -45,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-center items-center flex-row flex-wrap gap-3">
+    <div class="flex justify-center items-center flex-row flex-wrap gap-3 inner_container">
         <% if(productData){%>
             <% productData.img.forEach(img=>{%>
                 <div data-product="<%= productData.link %>" class="img_bx">
@@ -54,17 +55,238 @@
                 <%}) %>
                     <%} %>
                         <!-- <div data-product="<%= productData.img.img1 %>" class="img_bx p-4">
-            <img src="<%= productData.img.img1 %>" alt="img1" height="120px" width="120px">
+                            <img src="<%= productData.img.img1 %>" alt="img1" height="120px" width="120px">
+                        </div>
+                        <div data-product="<%= productData.img.img2 %>" class="img_bx p-4">
+                            <img src="<%= productData.img.img2 %>" alt="img2" height="120px" width="120px">
+                        </div>
+                        <div data-product="<%= productData.img.img3 %>" class="img_bx p-4">
+                            <img src="<%= productData.img.img3 %>" alt="img3" height="120px" width="120px">
+                        </div>
+                        <div data-product="<%= productData.img.img4 %>" class="img_bx p-4">
+                            <img src="<%= productData.img.img4 %>" alt="img4" height="120px" width="120px">
+                        </div> -->
+    </div>
+
+    <div class="flex justify-center items-center flex-row flex-wrap m-6">
+        <div class="flex justify-center items-center w-fit gap-60 flex-row remove-gap">
+            <div class="flex justify-start">
+                <% if(ratingData){%>
+                    <% if(Math.floor(ratingData.avg_rating)==1 ) {%>
+                        <% for(i=0;i< Math.floor(ratingData.avg_rating);i++) {%>
+                            <svg class="w-4 h-4 text-red-700 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 22 20">
+                                <path
+                                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                            </svg>
+                            <%} %>
+                                <% for(i=0;i< 4;i++) {%>
+                                    <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-700" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path
+                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+                                    <%} %>
+                                        <%} else if(Math.floor(ratingData.avg_rating)==2 ) {%>
+                                            <% for(i=0;i< Math.floor(ratingData.avg_rating);i++) {%>
+                                                <svg class="w-4 h-4 text-red-700 me-1" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 22 20">
+                                                    <path
+                                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                </svg>
+                                                <%} %>
+                                                    <% for(i=0;i< 3;i++) {%>
+                                                        <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-700"
+                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor" viewBox="0 0 22 20">
+                                                            <path
+                                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                        </svg>
+                                                        <%} %>
+                                                            <%} else if(Math.floor(ratingData.avg_rating)==3 ) {%>
+                                                                <% for(i=0;i< Math.floor(ratingData.avg_rating);i++) {%>
+                                                                    <svg class="w-4 h-4 text-red-700 me-1"
+                                                                        aria-hidden="true"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="currentColor" viewBox="0 0 22 20">
+                                                                        <path
+                                                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                                    </svg>
+                                                                    <%} %>
+                                                                        <% for(i=0;i< 2;i++) {%>
+                                                                            <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-700"
+                                                                                aria-hidden="true"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="currentColor" viewBox="0 0 22 20">
+                                                                                <path
+                                                                                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                                            </svg>
+                                                                            <%} %>
+                                                                                <%} else
+                                                                                    if(Math.floor(ratingData.avg_rating)==4)
+                                                                                    {%>
+                                                                                    <% for(i=0;i<
+                                                                                        Math.floor(ratingData.avg_rating);i++)
+                                                                                        {%>
+                                                                                        <svg class="w-4 h-4 text-red-700 me-1"
+                                                                                            aria-hidden="true"
+                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                            fill="currentColor"
+                                                                                            viewBox="0 0 22 20">
+                                                                                            <path
+                                                                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                                                        </svg>
+                                                                                        <%} %>
+                                                                                            <% for(i=0;i< 1;i++) {%>
+                                                                                                <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-700"
+                                                                                                    aria-hidden="true"
+                                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                                    fill="currentColor"
+                                                                                                    viewBox="0 0 22 20">
+                                                                                                    <path
+                                                                                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                                                                </svg>
+                                                                                                <%} %>
+                                                                                                    <%} else {%>
+                                                                                                        <% for(i=0;i<
+                                                                                                            Math.floor(ratingData.avg_rating);i++)
+                                                                                                            {%>
+                                                                                                            <svg class="w-4 h-4 text-red-700 me-1"
+                                                                                                                aria-hidden="true"
+                                                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                                                fill="currentColor"
+                                                                                                                viewBox="0 0 22 20">
+                                                                                                                <path
+                                                                                                                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                                                                            </svg>
+                                                                                                            <%} %>
+
+                                                                                                                <%} %>
+                                                                                                                    <p
+                                                                                                                        class="text-sm font-medium text-gray-700 dark:text-gray-400 mx-4">
+                                                                                                                        <%= ratingData.rating_count
+                                                                                                                            %>
+                                                                                                                            global
+                                                                                                                            ratings
+                                                                                                                    </p>
+                                                                                                                    <%}
+                                                                                                                        %>
+            </div>
+            <div class="flex justify-end">
+                <!-- Modal toggle -->
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" type="button"
+                    class="bg-red-700 text-white rating_btn rounded-full justify-end whitespace-nowrap">
+                    Rate Product
+                </button>
+
+                <!-- Main modal -->
+                <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div
+                                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    Ratings
+                                    &
+                                    Reviews
+                                </h3>
+                                <button type="button"
+                                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-hide="authentication-modal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close
+                                        modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-4 md:p-5">
+                                <form class="space-y-4" method="post" action="/rating/<%= productData?._id %>">
+                                    <div>
+                                        <label for="rating"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating</label>
+                                        <input type="number" name="rating" id="rating" min="1" max="5"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="*****" required />
+                                    </div>
+                                    <div>
+                                        <label for="message"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Message</label>
+                                        <textarea rows="" cols="" id="message" name="message"
+                                            placeholder="Something about the product"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
+                                    </div>
+                                    <button type="submit"
+                                        class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div data-product="<%= productData.img.img2 %>" class="img_bx p-4">
-            <img src="<%= productData.img.img2 %>" alt="img2" height="120px" width="120px">
+    </div>
+    <div class="lg:mx-[430px] lg:w-[1000px] lg:my-6 sm:m-3 md:m-3 m-3">
+        <div class="flex mt-4">
+            <a href="#" class="text-sm font-medium text-black-600 dark:text-black-700 hover:underline">5 star</a>
+            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                <div class="h-5 bg-red-700 rounded" style="width:<%= (ratingData.five_star)*100 %> %
+                    "></div>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-400">
+                <%= (ratingData.five_star)/100 %> %
+            </span>
         </div>
-        <div data-product="<%= productData.img.img3 %>" class="img_bx p-4">
-            <img src="<%= productData.img.img3 %>" alt="img3" height="120px" width="120px">
+        <div class="flex mt-4">
+            <a href="#" class="text-sm font-medium text-black-600 dark:text-black-700 hover:underline">4 star</a>
+            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                <div class="h-5 bg-red-700 rounded" style="width:<%= (ratingData.four_star)*100 %> %
+                    "></div>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-400">
+                <%= (ratingData.four_star)/100 %> %
+            </span>
         </div>
-        <div data-product="<%= productData.img.img4 %>" class="img_bx p-4">
-            <img src="<%= productData.img.img4 %>" alt="img4" height="120px" width="120px">
-        </div> -->
+        <div class="flex mt-4">
+            <a href="#" class="text-sm font-medium text-black-600 dark:text-black-700 hover:underline">3 star</a>
+            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                <div class="h-5 bg-red-700 rounded" style="width:<%= (ratingData.three_star)*100 %> %
+
+                    "></div>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-400">
+                <%= (ratingData.three_star)/100 %> %
+            </span>
+        </div>
+        <div class="flex  mt-4">
+            <a href="#" class="text-sm font-medium text-black-600 dark:text-black-700 hover:underline">2 star</a>
+            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                <div class="h-5 bg-red-700 rounded" style="width:<%= (ratingData.two_star)*100 %> %
+
+                    "></div>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-400">
+                <%= (ratingData.two_star)/100 %> %
+            </span>
+        </div>
+        <div class="flex mt-4">
+            <a href="#" class="text-sm font-medium text-black-600 dark:text-black-700 hover:underline">1 star</a>
+            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                <div class="h-5 bg-red-700 rounded" style="width:<%= (ratingData.one_star)*100 %> %
+
+                    "></div>
+            </div>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-400">
+                <%= (ratingData.one_star)/100 %> %
+            </span>
+        </div>
     </div>
 </body>
 

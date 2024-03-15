@@ -6,7 +6,13 @@ const NODEMAILER_SERVICE = process.env.NODEMAILER_SERVICE;
 const NODEMAILER_HOST = process.env.NODEMAILER_HOST;
 const NODEMAILER_PORT = process.env.NODEMAILER_PORT;
 
-const nodeMailer = async (email, data) => {
+/**
+ * Send email
+ * @param {String} email
+ * @param {String} subject
+ * @param {String} data
+ */
+const nodeMailer = async (email, subject, data) => {
   try {
     const transporter = nodemailer.createTransport({
       host: NODEMAILER_HOST,
@@ -18,11 +24,13 @@ const nodeMailer = async (email, data) => {
         pass: NODEMAILER_PASSWORD,
       },
     });
-    await transporter.sendMail({
+    const mailResponse = await transporter.sendMail({
       from: NODEMAILER_MAIL,
       to: email,
+      subject,
       html: data,
     });
+    return mailResponse;
   } catch (err) {
     console.log(err);
   }
