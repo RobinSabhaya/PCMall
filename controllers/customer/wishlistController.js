@@ -5,16 +5,23 @@ const wishlistController = () => {
     async postWishlist(req, res) {
       const { productId, isWhishlist } = req.body;
       try {
+        let message;
         if (req.session.user._id) {
-          const wishlistData = new wishlistModel({
-            customerId: req?.session?.user?._id,
-            productId,
-            isWhishlist,
-          });
-          await wishlistData.save();
+          const wishlistExists = await wishlistModel.findOne({ productId });
+          if (!wishlistExists) {
+            const wishlistData = new wishlistModel({
+              customerId: req?.session?.user?._id,
+              productId,
+              isWhishlist,
+            });
+            await wishlistData.save();
+            message = "Wishlist added successfully!!";
+          } else {
+            message = "Wishlist already exists!!";
+          }
           return res.status(200).json({
             status: "success",
-            message: "Wishlist added successfully",
+            message,
           });
         } else {
           return res.status(400).json({
