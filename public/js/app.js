@@ -79,13 +79,12 @@ try {
   const product_like = document.querySelectorAll(".product_like");
   product_like.forEach((product) => {
     product.addEventListener("click", () => {
-      product.classList.toggle("filled");
       let wishProduct = JSON.parse(product.dataset.wishproduct);
       const productId = wishProduct._id;
       axios
         .post(
           "/customer/wishlist",
-          { productId, isWishlist: true },
+          { productId },
           {
             headers: {
               "X-Requested-With": "XMLHttpRequest",
@@ -113,11 +112,12 @@ try {
             ripple: true,
           });
           notyf.error("Login Required");
-          product.classList.remove("filled");
+          product.checked = false; //Remove like
         });
     });
   });
 } catch (err) {
+  product.checked = false; //Remove like
   notyf.error("Login Required");
 }
 
@@ -219,7 +219,6 @@ if (category) {
         const product_like = document.querySelectorAll(".product_like");
         product_like.forEach((product) => {
           product.addEventListener("click", () => {
-            product.classList.toggle("filled");
             let wishProduct = JSON.parse(`${product.dataset.wishproduct}"}`);
             const productId = wishProduct._id;
             axios
@@ -253,7 +252,7 @@ if (category) {
                   ripple: true,
                 });
                 notyf.error("Login Required");
-                product.classList.remove("filled");
+                product.checked = false; //Remove Like
               });
           });
         });
@@ -389,7 +388,7 @@ paginations.forEach((pagination) => {
                   ripple: true,
                 });
                 notyf.error("Login Required");
-                product.classList.remove("outline");
+                product.checked = false; //Remove Like
               });
           });
         });
@@ -506,15 +505,22 @@ if (hiddenIp) {
     },
   });
 }
-// For whishlist
+// Wishlist page
 const wishlistProduct = document.querySelectorAll(".wishlistProduct");
-wishlistProduct.forEach((wishproduct) => {
-  wishproduct.addEventListener("click", () => {
-    const wishProduct = JSON.parse(wishproduct.dataset.wishproduct);
-    wishproduct.classList.remove("las");
-    wishproduct.classList.add("lar");
+wishlistProduct.forEach((product) => {
+  product.addEventListener("click", () => {
+    let wishProduct = JSON.parse(product.dataset.wishproduct);
+    const productId = wishProduct._id;
     axios
-      .delete(`/customer/wishlist/${wishProduct._id}`)
+      .post(
+        "/customer/wishlist",
+        { productId },
+        {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        }
+      )
       .then((res) => {
         const notyf = new Notyf({
           duration: 2000,
@@ -528,7 +534,7 @@ wishlistProduct.forEach((wishproduct) => {
         location.reload();
       })
       .catch((err) => {
-        notyf.error(err);
+        // console.log(err);
       });
   });
 });

@@ -35,10 +35,10 @@ route.post(
   [auth, upload.single("profile")],
   userController().updateUser
 );
-route.delete(
-  "/customer/wishlist/:id",
-  auth,
-  wishlistController().deleteWishlist
-);
+// route.delete(
+//   "/customer/wishlist/:id",
+//   auth,
+//   wishlistController().deleteWishlist
+// );
 
 module.exports = route;

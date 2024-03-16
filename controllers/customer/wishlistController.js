@@ -3,28 +3,31 @@ const BASE_URL = process.env.BASE_URL;
 const wishlistController = () => {
   return {
     async postWishlist(req, res) {
-      const { productId, isWhishlist } = req.body;
+      const { productId } = req.body;
       try {
         let message;
         if (req.session.user._id) {
           const wishlistExists = await wishlistModel.findOne({ productId });
-          if (!wishlistExists) {
+          if (wishlistExists) {
+            await wishlistModel.findOneAndDelete({
+              productId: productId,
+              customerId: req.session.user._id,
+            });
+            message = "Wishlist removed successfully!!";
+          } else {
             const wishlistData = new wishlistModel({
               customerId: req?.session?.user?._id,
               productId,
-              isWhishlist,
             });
             await wishlistData.save();
             message = "Wishlist added successfully!!";
-          } else {
-            message = "Wishlist already exists!!";
           }
           return res.status(200).json({
             status: "success",
             message,
           });
         } else {
-          return res.status(400).json({
+          return res.status(401).json({
             status: "error",
             message: "Login Required",
           });
@@ -47,14 +50,14 @@ const wishlistController = () => {
         BASE_URL,
       });
     },
-    async deleteWishlist(req, res) {
-      const { id } = req.params;
-      await wishlistModel.deleteOne({ productId: id });
-      return res.json({
-        status: "success",
-        message: "Wishlist deleted successfully",
-      });
-    },
+    // async deleteWishlist(req, res) {
+    //   const { id } = req.params;
+    //   await wishlistModel.deleteOne({ productId: id });
+    //   return res.json({
+    //     status: "success",
+    //     message: "Wishlist deleted successfully",
+    //   });
+    // },
   };
 };
 

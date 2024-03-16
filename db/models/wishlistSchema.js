@@ -10,9 +10,6 @@ const wishlistSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
-    isWhishlist: {
-      type: Boolean,
-    },
   },
   {
     timestamps: true,

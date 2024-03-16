@@ -1,6 +1,7 @@
 const productModel = require("../../db/models/productSchema");
 const categoryModel = require("../../db/models/categorySchema");
 const ratingModel = require("../../db/models/ratingSchema");
+const wishlistModel = require("../../db/models/wishlistSchema");
 const BASE_URL = process.env.BASE_URL;
 const homeController = () => {
   return {
@@ -107,11 +108,18 @@ const homeController = () => {
           },
         },
       ]);
+
+      const wishlistData = await wishlistModel
+        .find({ customerId: req?.session?.user?._id })
+        .populate("productId")
+        .select("-createdAt -updatedAt -__v");
+      console.log(wishlistData);
       return res.status(200).render("home", {
         productData,
         BASE_URL,
         categoryData,
         ratingData,
+        wishlistData,
       });
     },
   };
