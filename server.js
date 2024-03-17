@@ -12,6 +12,7 @@ const compression = require("compression");
 const cors = require("cors");
 // const helmet = require("helmet");
 const PORT = process.env.PORT || 8000;
+const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:8000/";
 require("./db/conn");
 require("./config/passport");
 const route = require("./routes/index");
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(
   cors({
-    allowedHeaders: "*",
+    origin: [BASE_URL, "http://127.0.0.1:3000/"],
   })
 );
 app.use(favicon(__dirname + "/public/image/favicon.ico"));
