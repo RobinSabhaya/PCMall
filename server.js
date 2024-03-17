@@ -9,6 +9,7 @@ const Emmiter = require("events");
 const passport = require("passport");
 const favicon = require("serve-favicon");
 const compression = require("compression");
+const cors = require("cors");
 // const helmet = require("helmet");
 const PORT = process.env.PORT || 8000;
 require("./db/conn");
@@ -41,6 +42,11 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json());
+app.use(
+  cors({
+    allowedHeaders: "*",
+  })
+);
 app.use(favicon(__dirname + "/public/image/favicon.ico"));
 app.use(expressLayout);
 app.use(express.static(path.join(__dirname, "/public")));
