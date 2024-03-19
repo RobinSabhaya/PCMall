@@ -242,7 +242,6 @@ const productController = () => {
     async updateProduct(req, res) {
       try {
         const { id } = req.params;
-        console.log(req.body);
         if (req.file) {
           await productModel.updateOne({ _id: id }, req.body);
           const productData = await productModel.findOne({ _id: id });

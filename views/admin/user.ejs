@@ -83,7 +83,6 @@
             }).then((res) => {
                 return res.json();
             }).then((resData) => {
-                console.log(resData);
                 notyf.success(resData.message)
                 location.reload();
             }).catch(err => {

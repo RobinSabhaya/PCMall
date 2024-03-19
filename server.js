@@ -51,6 +51,7 @@ app.use(
     methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
+app.options("*", cors());
 app.use(favicon(__dirname + "/public/image/favicon.ico"));
 app.use(expressLayout);
 app.use(express.static(path.join(__dirname, "/public")));

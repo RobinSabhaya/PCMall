@@ -113,7 +113,6 @@ const homeController = () => {
         .find({ customerId: req?.session?.user?._id })
         .populate("productId")
         .select("-createdAt -updatedAt -__v");
-      console.log(wishlistData);
       return res.status(200).render("home", {
         productData,
         BASE_URL,
