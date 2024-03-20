@@ -43,14 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json());
-app.use(
-  cors({
-    allowedHeaders: "*",
-    origin: [BASE_URL, "http://127.0.0.1:3000"],
-    optionsSuccessStatus: 200,
-    methods: ["GET", "PUT", "POST", "DELETE"],
-  })
-);
+app.use(cors());
 app.options("*", cors());
 app.use(favicon(__dirname + "/public/image/favicon.ico"));
 app.use(expressLayout);
