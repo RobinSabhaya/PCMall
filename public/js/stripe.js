@@ -6,14 +6,17 @@ export async function stripeIntegration() {
   );
   const paymentType = document.getElementById("paymentType");
   const paymentForm = document.getElementById("paymentForm");
+  let removeCard = document.getElementById("card"); //Remove the card element
   let phone;
   let address;
   let card = null;
   let formObj = {};
+  removeCard.style.display = "none";
   function mountWidget() {
     const elements = stripe.elements();
     card = elements.create("card", { style: {}, hidePostalCode: true });
     card.mount("#card");
+    removeCard.style.display = "inline";
     if (paymentForm) {
       paymentForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -55,6 +58,7 @@ export async function stripeIntegration() {
       if ("cash" === e.target.value) {
         codHandler();
         card.destroy();
+        removeCard.style.display = "none";
       }
     });
   }

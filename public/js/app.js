@@ -25,32 +25,40 @@ if (btns) {
     });
   });
 }
-const btnAdd = document.getElementById("btnAdd");
+const btnAdd = document.querySelectorAll("#btnAdd");
 if (btnAdd) {
-  let i = 0;
-  btnAdd.addEventListener("click", (e) => {
-    i++;
-    axios
-      .post("/additem", {
-        add: i,
-      })
-      .then((res) => {
-        // console.log(res);
-      });
+  btnAdd.forEach((add_btn) => {
+    const addProductId = add_btn.getAttribute("productId");
+    let i = 0;
+    add_btn.addEventListener("click", (e) => {
+      i++;
+      axios
+        .post("/additem", {
+          add: i,
+          productId: addProductId,
+        })
+        .then((res) => {
+          // console.log(res);
+        });
+    });
   });
 }
-const btnRemove = document.getElementById("btnRemove");
+const btnRemove = document.querySelectorAll("#btnRemove");
 if (btnRemove) {
-  let j = 0;
-  btnRemove.addEventListener("click", (e) => {
-    j++;
-    axios
-      .post("/additem", {
-        remove: j,
-      })
-      .then((res) => {
-        // console.log(res);
-      });
+  btnRemove.forEach((remove_btn) => {
+    const removeProductId = remove_btn.getAttribute("productId");
+    let j = 0;
+    remove_btn.addEventListener("click", (e) => {
+      j++;
+      axios
+        .post("/additem", {
+          remove: j,
+          productId: removeProductId,
+        })
+        .then((res) => {
+          // console.log(res);
+        });
+    });
   });
 }
 

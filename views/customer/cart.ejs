@@ -10,11 +10,13 @@
         </div>
         <div>
           <!-- <form action="/cc" method="post"> -->
-          <button class="text-2xl bg-slate-300 px-3 m-1 rounded-md" name="add" id="btnAdd">+</button>
+          <button class="text-2xl bg-slate-300 px-3 m-1 rounded-md" name="add" id="btnAdd"
+            productId="<%= product.item._id %>">+</button>
           <div class="text-black text-xl " id="qty">
             <%= product.qty %> pcs.
           </div>
-          <button class="text-2xl bg-slate-300 px-3 rounded-md m-1" name="remove" id="btnRemove">-</button>
+          <button class="text-2xl bg-slate-300 px-3 rounded-md m-1" name="remove" id="btnRemove"
+            productId="<%= product.item._id %>">-</button>
           <!-- </form> -->
         </div>
         <div class="m-3 text-red-500 text-xl">₹ <%= product.item.price%>

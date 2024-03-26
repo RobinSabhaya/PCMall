@@ -76,6 +76,7 @@ nav {
 .responsive-navbar {
   top: 0;
   position: sticky;
+  z-index: 1111;
 }
 .Navbar_Container {
   display: flex;
@@ -1078,6 +1079,7 @@ form {
   }
   .responsive-navbar {
     flex-direction: column-reverse;
+    z-index: 1111;
   }
   .Head_Cont_Right {
     display: flex;
@@ -1126,6 +1128,7 @@ form {
 @media screen and (max-width: 768px) {
   .responsive-navbar {
     flex-direction: column-reverse;
+    z-index: 1111;
   }
   .Categories {
     flex-direction: column;

@@ -4,7 +4,7 @@ const cartController = () => {
     updateCart(req, res) {
       // const cart ={
       //     items : {
-      //         pizzaObject,
+      //         productObject,
       //         qty
       //     }
       //     totalQty,
@@ -52,17 +52,39 @@ const cartController = () => {
       return res.status(200).render("cart", { cartData: "" });
     },
     async addItem(req, res) {
-      const { add, remove } = req.body;
+      const { add, remove, productId } = req.body;
       const itemsList = Object.values(req.session.cart.items);
-      itemsList.forEach((item) => {
-        if (item.qty > 0) {
-          item.qty = item.qty + (add ? +add : -remove);
-          req.session.cart.totalPrice = item.qty * item.item.price;
-          req.session.cart.totalQty =
-            req.session.cart.totalQty + (add ? +add : -remove);
-          req.session.save();
+      /**
+       * Add count the item from the cart session
+       */
+      if (add) {
+        for (const cart_item of itemsList) {
+          if (cart_item.item._id == productId) {
+            cart_item.qty = cart_item.qty + +add;
+          }
         }
-      });
+      }
+
+      /**
+       * Decrease count the item from the cart session
+       */
+      if (remove) {
+        for (const cart_item of itemsList) {
+          if (cart_item.item._id == productId) {
+            cart_item.qty = cart_item.qty - remove;
+          }
+        }
+      }
+      console.dir(itemsList, { depth: null });
+      // itemsList.forEach((item) => {
+      //   if (item.qty > 0) {
+      //     item.qty = item.qty + (add ? +add : -remove);
+      //     req.session.cart.totalPrice = item.qty * item.item.price;
+      //     req.session.cart.totalQty =
+      //       req.session.cart.totalQty + (add ? +add : -remove);
+      //     req.session.save();
+      //   }
+      // });
     },
   };
 };
