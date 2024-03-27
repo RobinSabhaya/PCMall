@@ -58,33 +58,43 @@ const cartController = () => {
        * Add count the item from the cart session
        */
       if (add) {
+        let count = 0;
+        let price = 0;
         for (const cart_item of itemsList) {
           if (cart_item.item._id == productId) {
             cart_item.qty = cart_item.qty + +add;
+            count += cart_item.qty;
+            price += cart_item.qty * cart_item.item.price;
+          } else {
+            count += cart_item.qty;
+            price += cart_item.qty * cart_item.item.price;
           }
         }
+        req.session.cart.totalQty = count;
+        req.session.cart.totalPrice = price;
+        req.session.save();
       }
 
       /**
        * Decrease count the item from the cart session
        */
       if (remove) {
+        let count = 0;
+        let price = 0;
         for (const cart_item of itemsList) {
           if (cart_item.item._id == productId) {
-            cart_item.qty = cart_item.qty - remove;
+            cart_item.qty = cart_item.qty + remove;
+            count += cart_item.qty;
+            price += cart_item.qty * cart_item.item.price;
+          } else {
+            count += cart_item.qty;
+            price += cart_item.qty * cart_item.item.price;
           }
         }
+        req.session.cart.totalQty = count;
+        req.session.cart.totalPrice = price;
+        req.session.save();
       }
-      console.dir(itemsList, { depth: null });
-      // itemsList.forEach((item) => {
-      //   if (item.qty > 0) {
-      //     item.qty = item.qty + (add ? +add : -remove);
-      //     req.session.cart.totalPrice = item.qty * item.item.price;
-      //     req.session.cart.totalQty =
-      //       req.session.cart.totalQty + (add ? +add : -remove);
-      //     req.session.save();
-      //   }
-      // });
     },
   };
 };

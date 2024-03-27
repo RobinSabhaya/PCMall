@@ -29,12 +29,12 @@ const btnAdd = document.querySelectorAll("#btnAdd");
 if (btnAdd) {
   btnAdd.forEach((add_btn) => {
     const addProductId = add_btn.getAttribute("productId");
-    let i = 0;
+    // let i = 0;
     add_btn.addEventListener("click", (e) => {
-      i++;
+      // i++;
       axios
         .post("/additem", {
-          add: i,
+          add: 1,
           productId: addProductId,
         })
         .then((res) => {
@@ -47,12 +47,12 @@ const btnRemove = document.querySelectorAll("#btnRemove");
 if (btnRemove) {
   btnRemove.forEach((remove_btn) => {
     const removeProductId = remove_btn.getAttribute("productId");
-    let j = 0;
+    // let j = 0;
     remove_btn.addEventListener("click", (e) => {
-      j++;
+      // j++;
       axios
         .post("/additem", {
-          remove: j,
+          remove: -1,
           productId: removeProductId,
         })
         .then((res) => {
