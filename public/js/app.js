@@ -65,13 +65,15 @@ if (btnRemove) {
 const binButtons = document.querySelectorAll("#bin-button");
 if (binButtons) {
   binButtons.forEach((bin_btn) => {
+    const productId = bin_btn.getAttribute("productId");
     bin_btn.addEventListener("click", () => {
-      const productId = bin_btn.getAttribute("productId");
       axios
         .post("/additem", {
           delId: productId,
         })
-        .then((res) => {});
+        .then((res) => {
+          console.log(res);
+        });
     });
   });
 }

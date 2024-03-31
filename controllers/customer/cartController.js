@@ -101,12 +101,14 @@ const cartController = () => {
        */
       if (delId) {
         for (const cart_item of itemsList) {
-          if (cart_item.item._id == delId.toString()) {
-            delete cart_item.item._id;
+          if (cart_item.item._id == delId) {
+            delete cart_item.item;
             req.session.save();
           }
         }
       }
+
+      return res.status(200).json();
     },
   };
 };
