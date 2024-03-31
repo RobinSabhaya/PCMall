@@ -17,7 +17,7 @@
           <button class="text-2xl bg-slate-300 px-3 rounded-md m-1" name="remove" id="btnRemove"
             productId="<%= product?.item?._id %>" <% if(product?.qty==1) {%>disabled<%}%> >-</button>
         </div>
-        <div class="m-3 text-red-500 text-xl">₹ <%= product.item.price%>
+        <div class="m-3 text-red-500 text-xl">₹ <%= product?.item?.price%>
         </div>
         <button class="bin-button w-12 h-12 bg-red-700" productId="<%= product?.item?._id %>" id="bin-button">
           <svg class="bin-top" viewBox="0 0 39 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
       </div>
       <%})%>
         <div class="text-red-500 flex justify-end items-center text-2xl w-10/12 font-bold">
-          Total Price : ₹ <%= session.cart.totalPrice %>
+          Total Price : ₹ <%= session?.cart?.totalPrice %>
         </div>
 </div>
 <div class="flex justify-center items-center flex-col flex-wrap">
