@@ -62,6 +62,20 @@ if (btnRemove) {
   });
 }
 
+// const binButtons = document.querySelectorAll("#bin-button");
+// if (binButtons) {
+//   binButtons.forEach((bin_btn) => {
+//     bin_btn.addEventListener("click", () => {
+//       const productId = bin_btn.getAttribute("productId");
+//       axios
+//         .post("/additem", {
+//           delId: productId,
+//         })
+//         .then((res) => {});
+//     });
+//   });
+// }
+
 const productImg = document.getElementById("productImg");
 const img_bx = document.querySelectorAll(".img_bx");
 img_bx.forEach((prd) => {

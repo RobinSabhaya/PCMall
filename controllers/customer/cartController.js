@@ -95,6 +95,25 @@ const cartController = () => {
         req.session.cart.totalPrice = price;
         req.session.save();
       }
+
+      // /**
+      //  * Delete a cart item from the cart session.
+      //  */
+      // if (delId) {
+      //   console.log("delId", delId);
+      //   for (const cart_item of itemsList) {
+      //     console.dir(cart_item, { depth: null });
+      //     if (cart_item.item._id == delId.toString()) {
+      //       delete cart_item.item._id;
+      //       req.session.save();
+      //     }
+      //   }
+      // }
+
+      // return res.status(200).json({
+      //   status: 200,
+      //   message: "Success",
+      // });
     },
   };
 };

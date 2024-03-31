@@ -159,34 +159,38 @@ function pagination(page, limit = 1) {
  * Pagination Next page
  */
 const paginationNext = document.querySelector(".paginationNext");
-paginationNext.addEventListener("click", () => {
-  page++;
-  secondLastElement.innerText = page;
-  secondLastElement.setAttribute(
-    "data-pagination",
-    JSON.stringify({ page, limit })
-  );
-  pagination(page, limit);
-});
-
-/**
- * Pagination previous page
- */
-const paginationPrev = document.querySelector(".paginationPrev");
-paginationPrev.addEventListener("click", () => {
-  if (page >= 6) {
+if (paginationNext) {
+  paginationNext.addEventListener("click", () => {
+    page++;
     secondLastElement.innerText = page;
-    page--;
     secondLastElement.setAttribute(
       "data-pagination",
       JSON.stringify({ page, limit })
     );
     pagination(page, limit);
-  } else {
-    secondLastElement.innerText = 5;
-    secondLastElement.setAttribute(
-      "data-pagination",
-      JSON.stringify({ page: 5, limit })
-    );
-  }
-});
+  });
+}
+
+/**
+ * Pagination previous page
+ */
+const paginationPrev = document.querySelector(".paginationPrev");
+if (paginationPrev) {
+  paginationPrev.addEventListener("click", () => {
+    if (page >= 6) {
+      secondLastElement.innerText = page;
+      page--;
+      secondLastElement.setAttribute(
+        "data-pagination",
+        JSON.stringify({ page, limit })
+      );
+      pagination(page, limit);
+    } else {
+      secondLastElement.innerText = 5;
+      secondLastElement.setAttribute(
+        "data-pagination",
+        JSON.stringify({ page: 5, limit })
+      );
+    }
+  });
+}
