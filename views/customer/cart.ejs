@@ -3,23 +3,23 @@
     <% cartData.forEach((product)=>{%>
       <div class="cartBox flex justify-between items-center flex-row flex-wrap w-3/4 h-fit p-6 rounded-lg">
         <div>
-          <img src="<%=  BASE_URL %>/uploads/<%=product.item?.img[0] %>" alt="" height="100px" width="100px" />
+          <img src="<%=  BASE_URL %>/uploads/<%=product?.item?.img[0] %>" alt="" height="100px" width="100px" />
         </div>
         <div class="flex flex-wrap w-1/2">
-          <%= product.item.name %>
+          <%= product?.item?.name %>
         </div>
         <div>
           <button class="text-2xl bg-slate-300 px-3 m-1 rounded-md" name="add" id="btnAdd"
-            productId="<%= product.item._id %>">+</button>
+            productId="<%= product?.item?._id %>">+</button>
           <div class="text-black text-xl " id="qty">
-            <%= product.qty %> pcs.
+            <%= product?.qty %> pcs.
           </div>
           <button class="text-2xl bg-slate-300 px-3 rounded-md m-1" name="remove" id="btnRemove"
-            productId="<%= product.item._id %>" <% if(product.qty==1) {%>disabled<%}%> >-</button>
+            productId="<%= product?.item?._id %>" <% if(product?.qty==1) {%>disabled<%}%> >-</button>
         </div>
         <div class="m-3 text-red-500 text-xl">₹ <%= product.item.price%>
         </div>
-        <button class="bin-button w-12 h-12 bg-red-700" productId="<%= product.item._id %>" id="bin-button">
+        <button class="bin-button w-12 h-12 bg-red-700" productId="<%= product?.item?._id %>" id="bin-button">
           <svg class="bin-top" viewBox="0 0 39 7" fill="none" xmlns="http://www.w3.org/2000/svg">
             <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
             <line x1="12" y1="1.5" x2="26.0357" y2="1.5" stroke="white" stroke-width="3"></line>

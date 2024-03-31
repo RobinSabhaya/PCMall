@@ -99,13 +99,15 @@ const cartController = () => {
       /**
        * Delete a cart item from the cart session.
        */
+      console.log("delId", delId);
       if (delId) {
         for (const cart_item of itemsList) {
+          console.dir(cart_item, { depth: null });
           if (cart_item.item._id == delId) {
             delete cart_item.item;
-            req.session.save();
           }
         }
+        req.session.save();
       }
 
       return res.status(200).json();
