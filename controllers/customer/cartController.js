@@ -52,7 +52,7 @@ const cartController = () => {
       return res.status(200).render("cart", { cartData: "" });
     },
     async addItem(req, res) {
-      const { add, remove, productId } = req.body;
+      const { add, remove, productId, delId } = req.body;
       const itemsList = Object.values(req.session.cart.items);
       /**
        * Add count the item from the cart session
@@ -96,24 +96,17 @@ const cartController = () => {
         req.session.save();
       }
 
-      // /**
-      //  * Delete a cart item from the cart session.
-      //  */
-      // if (delId) {
-      //   console.log("delId", delId);
-      //   for (const cart_item of itemsList) {
-      //     console.dir(cart_item, { depth: null });
-      //     if (cart_item.item._id == delId.toString()) {
-      //       delete cart_item.item._id;
-      //       req.session.save();
-      //     }
-      //   }
-      // }
-
-      // return res.status(200).json({
-      //   status: 200,
-      //   message: "Success",
-      // });
+      /**
+       * Delete a cart item from the cart session.
+       */
+      if (delId) {
+        for (const cart_item of itemsList) {
+          if (cart_item.item._id == delId.toString()) {
+            delete cart_item.item._id;
+            req.session.save();
+          }
+        }
+      }
     },
   };
 };
