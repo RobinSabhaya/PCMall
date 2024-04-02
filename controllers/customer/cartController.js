@@ -100,15 +100,19 @@ const cartController = () => {
        * Delete a cart item from the cart session.
        */
       if (delId) {
-        for (const cart_item of itemsList) {
-          if (cart_item.item?._id == delId) {
-            delete cart_item;
-          }
-        }
+        const deleteData = req.session.cart.items[delId];
+        req.session.cart.totalQty =
+          req?.session?.cart?.totalQty - deleteData?.qty;
+        req.session.cart.totalPrice =
+          req?.session?.cart?.totalPrice -
+          deleteData?.item?.price * deleteData?.qty;
+        delete req?.session?.cart?.items[delId];
         req.session.save();
       }
 
-      return res.status(200).json();
+      return res.status(200).json({
+        status: 200,
+      });
     },
   };
 };

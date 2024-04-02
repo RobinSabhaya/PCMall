@@ -18,10 +18,15 @@ if (btns) {
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
       let order = JSON.parse(btn.dataset.order);
-      axios.post("/updatecart", order).then((res) => {
-        notyf.success(res.data.msg);
-        cart.innerText = res.data.totalQty;
-      });
+      axios
+        .post("/updatecart", order)
+        .then((res) => {
+          notyf.success(res.data.msg);
+          cart.innerText = res.data.totalQty;
+        })
+        .catch((err) => {
+          notyf.error("Login Required!");
+        });
     });
   });
 }
@@ -39,6 +44,7 @@ if (btnAdd) {
         })
         .then((res) => {
           // console.log(res);
+          location.reload();
         });
     });
   });
@@ -57,6 +63,7 @@ if (btnRemove) {
         })
         .then((res) => {
           // console.log(res);
+          location.reload();
         });
     });
   });
@@ -72,7 +79,7 @@ if (binButtons) {
           delId: productId,
         })
         .then((res) => {
-          console.log(res);
+          location.reload();
         });
     });
   });

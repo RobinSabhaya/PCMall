@@ -11,7 +11,7 @@ export async function stripeIntegration() {
   let address;
   let card = null;
   let formObj = {};
-  removeCard.style.display = "none";
+  if (removeCard) removeCard.style.display = "none";
   function mountWidget() {
     const elements = stripe.elements();
     card = elements.create("card", { style: {}, hidePostalCode: true });
