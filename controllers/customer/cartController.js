@@ -112,6 +112,7 @@ const cartController = () => {
 
       return res.status(200).json({
         status: 200,
+        cartData: req.session.cart,
       });
     },
   };

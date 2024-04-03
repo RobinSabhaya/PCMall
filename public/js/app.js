@@ -30,6 +30,12 @@ if (btns) {
     });
   });
 }
+
+const qty = document.getElementById("qty");
+
+/**
+ * Add cart item Button
+ */
 const btnAdd = document.querySelectorAll("#btnAdd");
 if (btnAdd) {
   btnAdd.forEach((add_btn) => {
@@ -43,12 +49,17 @@ if (btnAdd) {
           productId: addProductId,
         })
         .then((res) => {
-          // console.log(res);
-          location.reload();
+          if (qty) {
+            qty.innerText = res.data.cartData.items[addProductId].qty + " pcs.";
+            cart.innerText = res.data.cartData.totalQty;
+          }
         });
     });
   });
 }
+/**
+ * Remove cart Item Button
+ */
 const btnRemove = document.querySelectorAll("#btnRemove");
 if (btnRemove) {
   btnRemove.forEach((remove_btn) => {
@@ -62,13 +73,19 @@ if (btnRemove) {
           productId: removeProductId,
         })
         .then((res) => {
-          // console.log(res);
-          location.reload();
+          if (qty) {
+            qty.innerText =
+              res.data.cartData.items[removeProductId].qty + " pcs.";
+            cart.innerText = res.data.cartData.totalQty;
+          }
         });
     });
   });
 }
 
+/**
+ * Delete cart item Button
+ */
 const binButtons = document.querySelectorAll("#bin-button");
 if (binButtons) {
   binButtons.forEach((bin_btn) => {
