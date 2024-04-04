@@ -11,7 +11,10 @@ const invoiceController = () => {
       const orderData = await orderModel
         .findOne({ _id: id })
         .populate({ path: "customerId" });
-      const browser = await puppeteer.launch({ headless: "new" });
+      const browser = await puppeteer.launch({
+        executablePath: "../../node_modules/puppeteer/install.js",
+        headless: "new",
+      });
       const page = await browser.newPage();
       await page.emulateMediaType("screen");
       const ejsData = fs.readFileSync(
