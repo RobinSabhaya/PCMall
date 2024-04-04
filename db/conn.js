@@ -4,7 +4,6 @@ const conn = mongoose
   .connect(MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    strictQuery: false,
   })
   .then(() => {
     console.log("connection successfull");
