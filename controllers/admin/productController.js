@@ -193,7 +193,7 @@ const productController = () => {
             url: BASE_URL,
           });
         }
-        if (req.query) {
+        if ((req.query && page) || limit) {
           productData = await productModel
             .find()
             .select("-createdAt -updatedAt -__v")
