@@ -19,7 +19,6 @@ const registerController = () => {
 
         if (req.xhr) {
           if (registerData) {
-            req.flash("credentials", "Email is already exist!!");
             return res.status(400).json({
               success: "false",
               message: "Email is already exist",
@@ -40,9 +39,13 @@ const registerController = () => {
               const subject = `Congratulations, you have successfully registered as ${data.name} on ${BASE_URL}`;
               nodeMailer(email, subject, mailTemplate(data)).catch((err) => {
                 return res.status(200).json({
-                  status: "success",
-                  message: "User registered successfully",
+                  success: "false",
+                  message: "Something went wrong",
                 });
+              });
+              return res.status(200).json({
+                success: true,
+                message: "User registered successfully",
               });
             } else {
               return res.json({
