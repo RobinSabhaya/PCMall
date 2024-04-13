@@ -16,6 +16,39 @@ const loginController = () => {
     async postLogin(req, res) {
       const { Lemail, Lpassword } = req.body;
       const loginData = await registerModel.findOne({ email: Lemail });
+
+      /**
+       * PCMall APP
+       */
+      if (req.xhr) {
+        if (loginData) {
+          const hash = await bcrypt.compare(Lpassword, loginData.password);
+          if (Lemail === loginData.email && hash) {
+            req.session.user = {
+              _id: loginData._id,
+              name: loginData.name,
+              role: loginData.role,
+            };
+            const accessToken = jwt.sign(req.session.user, SECRET_KEY);
+            req.session.user.accessToken = accessToken;
+            return res.status(200).json({
+              success: true,
+              message: "Login successfully",
+            });
+          } else {
+            return res.status(400).json({
+              success: true,
+              message: "Invalid email and password",
+            });
+          }
+        } else {
+          return res.status(400).json({
+            success: true,
+            message: "Invalid email and password",
+          });
+        }
+      }
+
       if (loginData) {
         const hash = await bcrypt.compare(Lpassword, loginData.password);
         if (Lemail === loginData.email && hash) {

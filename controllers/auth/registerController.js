@@ -12,6 +12,47 @@ const registerController = () => {
       const { name, email, password, cpassword } = req.body;
       try {
         const registerData = await registerModel.exists({ email: email });
+
+        /**
+         * PCMall APP
+         */
+
+        if (req.xhr) {
+          if (registerData) {
+            req.flash("credentials", "Email is already exist!!");
+            return res.status(400).json({
+              success: "false",
+              message: "Email is already exist",
+            });
+          } else {
+            if (cpassword === password) {
+              const hashPassword = await bcrypt.hash(password, 10);
+              const registerData = new registerModel({
+                name: name,
+                email: email,
+                password: hashPassword,
+              });
+              await registerData.save();
+              const data = {
+                name: name,
+                email: email,
+              };
+              const subject = `Congratulations, you have successfully registered as ${data.name} on ${BASE_URL}`;
+              nodeMailer(email, subject, mailTemplate(data)).catch((err) => {
+                return res.status(200).json({
+                  status: "success",
+                  message: "User registered successfully",
+                });
+              });
+            } else {
+              return res.json({
+                success: false,
+                message: "Password and confirm password doesn't match",
+              });
+            }
+          }
+        }
+
         if (registerData) {
           req.flash("credentials", "Email is already exist!!");
           return res.redirect("/register");
