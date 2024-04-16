@@ -37,7 +37,7 @@ const loginController = () => {
             });
           } else {
             return res.status(400).json({
-              success: true,
+              success: false,
               message: "Invalid email and password",
             });
           }
