@@ -43,7 +43,7 @@ const loginController = () => {
           }
         } else {
           return res.status(400).json({
-            success: true,
+            success: false,
             message: "Invalid email and password",
           });
         }
@@ -95,6 +95,42 @@ const loginController = () => {
       const { email } = req.body;
       try {
         const userExists = await registerModel.findOne({ email });
+
+        /**
+         * PCMall APP
+         */
+        if (req.xhr) {
+          if (!userExists) {
+            return res.status(404).json({
+              success: false,
+              message: "Email not found",
+            });
+          }
+          const encrypted = encryptText(userExists.email, CIPHER_SECRET);
+          /** Send Email for verification */
+          const reset_link = `${BASE_URL}/change-password?email=${encrypted}`;
+          const mailData = {
+            name: userExists.name,
+            email: userExists.email,
+            reset_link,
+          };
+          const subject = `You received password reset instructions from ${BASE_URL}`;
+          nodeMailer(
+            userExists.email,
+            subject,
+            forget_password_mail(mailData)
+          ).catch((err) => {
+            return res.status(500).json({
+              success: true,
+              message: "Something went wrong",
+            });
+          });
+          return res.status(200).json({
+            success: true,
+            message: "Email send successfully",
+          });
+        }
+
         if (!userExists) {
           return res.redirect("/login");
         }
@@ -118,7 +154,7 @@ const loginController = () => {
         return res.status(302).redirect("/reset-password");
       } catch (err) {
         return res.status(400).json({
-          status: 400,
+          success: true,
           message: err.message,
         });
       }
