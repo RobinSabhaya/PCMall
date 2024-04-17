@@ -224,7 +224,10 @@ const productController = () => {
               url: BASE_URL,
             });
           } else {
-            return res.render("allproduct", { productData, BASE_URL });
+            return res.status(200).json({
+              success: true,
+              productData,
+            });
           }
         }
         if (category) {
