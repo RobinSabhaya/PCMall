@@ -181,6 +181,52 @@ const productController = () => {
         productData = await productModel
           .find()
           .select("-createdAt -updatedAt -__v");
+
+        /**
+         * PCMall APP
+         */
+        if (req.xhr) {
+          const { category, page, limit } = req.query;
+          const filter = {};
+          const pagination = {
+            page: page || 1,
+            limit: limit || 10,
+          };
+          let productData;
+          productData = await productModel
+            .find()
+            .select("-createdAt -updatedAt -__v");
+          if (category) {
+            filter.categoryId = category;
+            productData = await productModel
+              .find(filter)
+              .select("-createdAt -updatedAt -__v");
+            return res.json({
+              status: "success",
+              productData,
+              totalResult: productData.length,
+              url: BASE_URL,
+            });
+          }
+          if ((req.query && page) || limit) {
+            productData = await productModel
+              .find()
+              .select("-createdAt -updatedAt -__v")
+              .skip((pagination.page - 1) * pagination.limit)
+              .limit(pagination.limit);
+            return res.json({
+              status: "success",
+              productData,
+              totalResult: productData.length,
+              page: pagination.page,
+              limit: pagination.limit,
+              total_pages: Math.floor(productData.length / pagination.limit),
+              url: BASE_URL,
+            });
+          } else {
+            return res.render("allproduct", { productData, BASE_URL });
+          }
+        }
         if (category) {
           filter.categoryId = category;
           productData = await productModel
