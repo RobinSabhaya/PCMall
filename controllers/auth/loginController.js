@@ -30,10 +30,11 @@ const loginController = () => {
               role: loginData.role,
             };
             const accessToken = jwt.sign(req.session.user, SECRET_KEY);
-            req.session.user.accessToken = accessToken;
+            // req.session.user.accessToken = accessToken;
             return res.status(200).json({
               success: true,
               message: "Login successfully",
+              accessToken: accessToken,
             });
           } else {
             return res.status(400).json({
