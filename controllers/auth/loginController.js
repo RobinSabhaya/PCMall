@@ -196,6 +196,39 @@ const loginController = () => {
         });
       }
     },
+    async socialLogin(req, res) {
+      const { email, name } = req.body;
+      const userExists = await registerModel.findOne({ email: email });
+      if (!userExists && !userExists.password) {
+        const userData = new registerModel({
+          email,
+          name,
+        });
+        await userData.save();
+        let user = {
+          _id: userData._id,
+          name: userData.name,
+          role: "customer",
+        };
+        const accessToken = jwt.sign(user, SECRET_KEY);
+        req.session.user.accessToken = accessToken;
+        return res.status(200).json({
+          success: true,
+          message: "Social login successful",
+          accessToken: accessToken,
+        });
+      } else if (userExists && userExists.password) {
+        return res.status(400).json({
+          success: false,
+          message: "Signup with email and password",
+        });
+      } else {
+        return res.status(400).json({
+          success: false,
+          message: "Email already exists",
+        });
+      }
+    },
   };
 };
 

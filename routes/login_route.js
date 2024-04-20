@@ -18,5 +18,6 @@ route.get("/reset-password", loginController().getForgetPassword);
 route.post("/reset-password", loginController().postForgetPassword);
 route.get("/change-password", loginController().getChangePassword);
 route.post("/change-password", loginController().postChangePassword);
+route.post("/social-login", loginController().socialLogin);
 
 module.exports = route;
