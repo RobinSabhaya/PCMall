@@ -199,7 +199,7 @@ const loginController = () => {
     async socialLogin(req, res) {
       const { email, name } = req.body;
       const userExists = await registerModel.findOne({ email: email });
-      if (!userExists && !userExists.password) {
+      if (!userExists && !userExists?.password) {
         const userData = new registerModel({
           email,
           name,
