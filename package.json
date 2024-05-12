@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js -e ejs,js,json",
+    "dev": "nodemon server.js -e ejs,js,json && npx puppeteer browsers install chrome",
     "start": "node server.js",
-    "prod": "node server.js",
+    "prod": "node server.js && npx puppeteer browsers install chrome",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Robin Sabhaya",
