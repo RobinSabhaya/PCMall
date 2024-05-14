@@ -25,11 +25,14 @@ const ratingController = () => {
           rating,
           message,
         });
-        // return res.status(201).json({
-        //   status: 201,
-        //   message: "Rating created successfully",
-        // });
-        return res.status(302).redirect(`/singleproduct/${id}`); //Redirect to same page
+        if (req.xhr) {
+          return res.status(201).json({
+            status: 201,
+            message: "Rating created successfully",
+          });
+        } else {
+          return res.status(302).redirect(`/singleproduct/${id}`); //Redirect to same page
+        }
       } catch (err) {
         return res.status(400).json({
           status: 400,
