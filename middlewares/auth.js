@@ -31,7 +31,7 @@ exports.auth = async (req, res, next) => {
    * For PCMall APP
    */
   if (req.xhr) {
-    const { accessToken } = req.headers.authorization;
+    const accessToken = req.headers.authorization;
     if (accessToken) {
       const { _id, role } = jwt.verify(accessToken, SECRET_KEY);
       req.user = { _id, role };
