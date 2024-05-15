@@ -26,6 +26,24 @@ exports.auth = async (req, res, next) => {
       return res.redirect("/login");
     }
   }
+
+  /**
+   * For PCMall APP
+   */
+  if (req.xhr) {
+    const { accessToken } = req.headers.authorization;
+    if (accessToken) {
+      const { _id, role } = jwt.verify(accessToken, SECRET_KEY);
+      req.user = { _id, role };
+      next();
+    } else {
+      return res
+        .status(401)
+        .json({ status: "error", message: "Login Required" });
+    }
+  } else {
+    return res.status(401).json({ status: "error", message: "Login Required" });
+  }
 };
 
 exports.isCustomer = async (req, res, next) => {
