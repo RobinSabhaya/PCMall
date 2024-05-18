@@ -30,7 +30,7 @@ exports.auth = async (req, res, next) => {
   /**
    * For PCMall APP
    */
-  if (req.xhr) {
+  if (req.headers["X-Powered-By"]) {
     const accessToken = req.headers.authorization;
     if (accessToken) {
       const { _id, role } = jwt.verify(accessToken, SECRET_KEY);

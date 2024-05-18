@@ -8,6 +8,13 @@
 </head>
 
 <body>
+    <div class="flex justify-center items-center w-2/6 m-3 gap-2">
+        <a href="/" class="text-black"><i class="fa-solid fa-house text-xl"></i></a>
+        <span class="text-xl">></span> <span class="text-xl">product
+            > <%= productData._id %>
+        </span>
+        </span>
+    </div>
     <div class="grid grid-cols-2 place-content-center product_grid_container">
         <div class="flex justify-center items-end flex-col flex-wrap w-auto p-10 mr-3 inner_container">
             <img src="<%= BASE_URL %>/uploads/<%= productData.img[0]%>" alt="" height="200px" width="200px"

@@ -19,4 +19,10 @@ route.get(
   [auth, isAdmin],
   dashboardController().getDashboard
 );
+
+route.get(
+  "/admin/user/download",
+  [auth, isAdmin],
+  adminController().downloadCsv
+);
 module.exports = route;
